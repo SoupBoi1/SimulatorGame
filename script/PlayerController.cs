@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
      
 
     private Transform _transform;
-    
+    public Transform cameraPosition; 
 
     
 
@@ -68,9 +68,9 @@ public class PlayerController : MonoBehaviour
         input_jump.performed += context => OnInputJump(context);
         input_jump.canceled += ctx => OnInputJump(ctx);
         
-        input_move = _inputActionMap_OnFoot.FindAction("look");
-        input_move.performed += context => OnInputMove(context);
-        input_move.canceled += ctx => OnInputMove(ctx);
+        input_move = _inputActionMap_Camera.FindAction("look");
+        input_move.performed += context => OnInputLook(context);
+        input_move.canceled += ctx => OnInputLook(ctx);
         
         
 
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         inputMoveDir.x = context.ReadValue<Vector2>().x;
         inputMoveDir.z = context.ReadValue<Vector2>().y;
         
-           Debug.Log(inputMoveDir);
+           //Debug.Log(inputMoveDir);
         
     }
     public void OnInputJump(InputAction.CallbackContext context)
@@ -96,9 +96,8 @@ public class PlayerController : MonoBehaviour
     public void OnInputLook(InputAction.CallbackContext context)
     {
         inputCameraVector.x = context.ReadValue<Vector2>().x;
-        inputCameraVector.z = context.ReadValue<Vector2>().y;
+        inputCameraVector.y = context.ReadValue<Vector2>().y;
         
-        Debug.Log(inputMoveDir);
 
     }
     
@@ -118,19 +117,17 @@ public class PlayerController : MonoBehaviour
             inAir = false;
             externalVilocityOfPlayer.y = 0;
         }
-
-        rotateBody.x += inputCameraVector.x*Time.deltaTime;
-        transform.Rotate(Transform.up, rotateBody.x);
         
-        _characterController.Move(
-            ((
-                    ((_transform.forward *inputMoveDir.x)  + (_transform.right *inputMoveDir.z )) 
-                    * speed
-                  )
-                +(externalVilocityOfPlayer)
-                )
-                *Time.deltaTime
-            
-            );
+        movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.y )) * speed +(externalVilocityOfPlayer) ;
+
+        rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
+        transform.localRotation =  Quaternion.Euler(0,-rotateBody.x,0);
+        
+        cameraPosition.localRotation =  Quaternion.Euler(rotateBody.y,0,0);
+
+        _characterController.Move(movement*Time.deltaTime);
     }
+    
+    
+    
 }
