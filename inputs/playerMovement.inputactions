@@ -2,7 +2,7 @@
     "name": "playerMovement",
     "maps": [
         {
-            "name": "OnFoot",
+            "name": "onFoot",
             "id": "e47af583-2527-47c0-91d1-9a2c77e3775f",
             "actions": [
                 {
