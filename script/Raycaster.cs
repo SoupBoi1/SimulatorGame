@@ -61,6 +61,7 @@ public class Raycaster : MonoBehaviour
      */
     public bool  setPointHit(Transform T, float distanceThrushold)
     {
+        
         if (hit.distance <= distanceThrushold)
         {
             return setPointHit(T);
