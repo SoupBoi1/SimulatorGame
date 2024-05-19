@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
     
     public void OnInputJump(InputAction.CallbackContext context)
     {
-        
+        // TODO fixjump
         
         Debug.Log("AHHHH");
         if (!isinAir)
@@ -149,6 +149,7 @@ public class PlayerController : MonoBehaviour
     
     public void OnInputLook(InputAction.CallbackContext context)
     {
+        // TODO mpove to camera
         inputCameraVector.x = context.ReadValue<Vector2>().x;
         inputCameraVector.y = context.ReadValue<Vector2>().y;
         
@@ -159,7 +160,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_characterController.isGrounded)
+        if (!_characterController.isGrounded) // TODO fixjump
         {
             if (ungrounedTimer <= 0)
             {
@@ -179,46 +180,19 @@ public class PlayerController : MonoBehaviour
             externalVilocityOfPlayer.y = 0;
         }
 
-        if (isinAir)
+        if (isinAir) // TODO fixjump
         {
             externalVilocityOfPlayer += gobalGravity*Time.deltaTime;
         }
 
-       /* if (movementState == 1)
-        {
-            Debug.Log("acceration "+currentSpeed);
-            currentSpeed += AcclerationMovement * Time.deltaTime;
-            if (currentSpeed >= maxSpeed)
-            {
-                Debug.Log("maxspeed "+currentSpeed);
-
-                currentSpeed = maxSpeed;
-                movementState = 2;
-            }
-        } else if (movementState == 3)
-        {
-            
-            
-
-            currentSpeed -= DeacclerationMovement * Time.deltaTime;
-            
-            if (currentSpeed <=0f )
-            {
-
-                currentSpeed = 0f;
-                movementState = 0;
-            }
-        }*/
        Movement(Time.deltaTime);
 
   
-       // movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.x )) * currentSpeed +(externalVilocityOfPlayer) ; 
         rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
         transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
         
         cameraPosition.localRotation =  Quaternion.Euler(-rotateBody.y,0,0);
 
-       // _characterController.Move(movement*Time.deltaTime);
     }
 
     public void Movement(float dealtaTime)
