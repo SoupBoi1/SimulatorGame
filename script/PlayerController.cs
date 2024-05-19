@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
      
 
     private Transform _transform;
-    public Transform cameraPosition; 
+    public Transform cameraPosition;
+    public Animator animator;
 
     
 
@@ -48,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public float fallDelay = 5f;
     private float ungrounedTimer;
     public float jumpBuffer = 5f;
+    
+    
         
 
 
@@ -95,7 +98,9 @@ public class PlayerController : MonoBehaviour
         input_move.performed += context => OnInputLook(context);
         input_move.canceled += ctx => OnInputLook(ctx);
         
+
         
+        animator.SetBool("land",true);
 
     }
 
@@ -139,8 +144,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("AHHHH");
         if (!isinAir)
         {
+            animator.SetBool("jump",true);
+
             isinAir = true;
             externalVilocityOfPlayer = -gobalGravity;
+            animator.SetBool("jump",false);
+
         }
         
         
@@ -165,6 +174,11 @@ public class PlayerController : MonoBehaviour
             if (ungrounedTimer <= 0)
             {
                 isinAir = true;
+                animator.SetBool("fall",true);
+                animator.SetBool("land",false);
+
+
+
             }
             ungrounedTimer -= Time.deltaTime;
             
@@ -175,6 +189,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if (isinAir)
+            {
+                animator.SetBool("land",true);
+                animator.SetBool("fall",false);
+
+
+            }
             ungrounedTimer = fallDelay;
             isinAir = false;
             externalVilocityOfPlayer.y = 0;
@@ -182,6 +203,8 @@ public class PlayerController : MonoBehaviour
 
         if (isinAir) // TODO fixjump
         {
+            animator.SetBool("fall",true);
+
             externalVilocityOfPlayer += gobalGravity*Time.deltaTime;
         }
 
@@ -192,6 +215,9 @@ public class PlayerController : MonoBehaviour
         transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
         
         cameraPosition.localRotation =  Quaternion.Euler(-rotateBody.y,0,0);
+
+        
+        animator.SetInteger("MovementState", movementState);
 
     }
 
