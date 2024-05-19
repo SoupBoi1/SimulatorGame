@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ragdoll",
+                    "type": "Button",
+                    "id": "0acb1c29-cac3-4f4c-8906-0e13b633a2c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -99,6 +108,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c56d3c08-5476-4bfb-8208-74a61878b75a",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ragdoll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "23271cf8-7805-4043-8031-9e5effa1bebb",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ragdoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -193,6 +224,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "New action map",
+            "id": "8d9c2eb6-ba5d-44c4-b553-b60701bb47e2",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "a46f1419-6925-4090-bf7a-967db877eb6c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fcf75616-a896-4928-a966-61793bb90bda",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

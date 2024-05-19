@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     
     private InputAction input_move;
     private InputAction input_jump;
+    private InputAction input_ragdoll;
+
     
     private InputAction input_look;
     
@@ -30,6 +32,11 @@ public class PlayerController : MonoBehaviour
     private Transform _transform;
     public Transform cameraPosition;
     public Animator animator;
+    public GameObject animationOBJ;
+
+    // tem TODO find a better way to ragdoll or even active ragdoll
+    public GameObject ragdollOBJ;
+    public Animator ragdollAnimator;
 
     
 
@@ -71,6 +78,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ragdollOBJ.SetActive(false);
         inputMoveDir = Vector3.zero;
         inputCameraVector = Vector3.zero;
         rotateBody = Vector3.zero;
@@ -87,7 +95,7 @@ public class PlayerController : MonoBehaviour
         
         input_move = _inputActionMap_OnFoot.FindAction("move");
         input_jump = _inputActionMap_OnFoot.FindAction("jump");
-        
+        input_ragdoll =_inputActionMap_OnFoot.FindAction("ragdoll");
         
         input_move.performed += context => OnInputMove(context);
         input_move.canceled += ctx => OnInputMove(ctx);
@@ -97,6 +105,8 @@ public class PlayerController : MonoBehaviour
         input_move = _inputActionMap_Camera.FindAction("look");
         input_move.performed += context => OnInputLook(context);
         input_move.canceled += ctx => OnInputLook(ctx);
+
+        input_ragdoll.performed += ct => OnRagdoll();
         
 
         
@@ -251,6 +261,15 @@ public class PlayerController : MonoBehaviour
         _characterController.Move(movement*Time.deltaTime);
 
         
+    }
+
+
+    public void OnRagdoll()
+    {
+        ragdollOBJ.SetActive(true);
+        ragdollAnimator.enabled = false;
+        _characterController.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
     
     
