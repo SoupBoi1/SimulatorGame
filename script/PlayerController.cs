@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEditor;
 using UnityEditor.Timeline;
 using UnityEngine;
@@ -16,8 +17,9 @@ public class PlayerController : MonoBehaviour
     
     private InputAction input_move;
     private InputAction input_jump;
+    
     private InputAction input_look;
-
+    
     private Vector3 inputMoveDir;
     private float inputMoveDirx;
     private float inputMoveDiry;
@@ -30,10 +32,31 @@ public class PlayerController : MonoBehaviour
 
     
 
-    public bool  inAir;
+    
+/*movementState:
+ * 0 = idel - no changes to currentSpeed
+ * 1= acclration - acclration the currentSpeed
+ * 2= maxspeed - no changes to currentSpeed --will go to state 3 if stop
+ * 3= deacclration - Deacclration the currentSpeed
+ * 4 = turn acclration - if when going opposite of current dirton will apply the turn acclration on after <state 1>
+ *
+ *
+ */
+    private int movementState = 0;
+    private bool jumpable = false;
+    public bool isinAir = false;
+    public float fallDelay = 5f;
+    private float ungrounedTimer;
+    public float jumpBuffer = 5f;
+        
 
 
-    public float speed = 10;// movment speed of th player in any dectertions
+    public float currentSpeed = 0;// current movment speed of th player 
+    public float AcclerationMovement = 3;
+    public float DeacclerationMovement=0;
+    public float TurnDeacclerationMovement=100;
+    public float maxSpeed = 10;
+
     
     public Vector3 gobalGravity; // the gravity of the player's enviorment
 
@@ -79,17 +102,48 @@ public class PlayerController : MonoBehaviour
 
     public void OnInputMove(InputAction.CallbackContext context)
     {
-      
-        inputMoveDir.x = context.ReadValue<Vector2>().x;
-        inputMoveDir.z = context.ReadValue<Vector2>().y;
+       
         
+        if (context.performed)
+        {
+            movementState = 1;
+            inputMoveDir.x = context.ReadValue<Vector2>().x;
+            inputMoveDir.z = context.ReadValue<Vector2>().y;
+            Debug.Log("movemnt state:"+ movementState);
+
+        }
+        if (context.canceled)
+        {
+            if (DeacclerationMovement == 0f)
+            {
+                movementState = 0;
+            }
+            else
+            {
+                movementState = 3;
+                Debug.Log("movemnt state:"+ movementState);
+            }
+            
+
+        }
            //Debug.Log(inputMoveDir);
         
     }
+
+    
+    
     public void OnInputJump(InputAction.CallbackContext context)
     {
+        
+        
         Debug.Log("AHHHH");
-        externalVilocityOfPlayer = -gobalGravity;
+        if (!isinAir)
+        {
+            isinAir = true;
+            externalVilocityOfPlayer = -gobalGravity;
+        }
+        
+        
 
     }
     
@@ -107,25 +161,96 @@ public class PlayerController : MonoBehaviour
     {
         if (!_characterController.isGrounded)
         {
-            externalVilocityOfPlayer += gobalGravity*Time.deltaTime;
-            inAir = true;
+            if (ungrounedTimer <= 0)
+            {
+                isinAir = true;
+            }
+            ungrounedTimer -= Time.deltaTime;
+            
+            
+            
             
 
         }
         else
         {
-            inAir = false;
+            ungrounedTimer = fallDelay;
+            isinAir = false;
             externalVilocityOfPlayer.y = 0;
         }
-        
-        movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.y )) * speed +(externalVilocityOfPlayer) ;
 
+        if (isinAir)
+        {
+            externalVilocityOfPlayer += gobalGravity*Time.deltaTime;
+        }
+
+       /* if (movementState == 1)
+        {
+            Debug.Log("acceration "+currentSpeed);
+            currentSpeed += AcclerationMovement * Time.deltaTime;
+            if (currentSpeed >= maxSpeed)
+            {
+                Debug.Log("maxspeed "+currentSpeed);
+
+                currentSpeed = maxSpeed;
+                movementState = 2;
+            }
+        } else if (movementState == 3)
+        {
+            
+            
+
+            currentSpeed -= DeacclerationMovement * Time.deltaTime;
+            
+            if (currentSpeed <=0f )
+            {
+
+                currentSpeed = 0f;
+                movementState = 0;
+            }
+        }*/
+       Movement(Time.deltaTime);
+
+  
+       // movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.x )) * currentSpeed +(externalVilocityOfPlayer) ; 
         rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
-        transform.localRotation =  Quaternion.Euler(0,-rotateBody.x,0);
+        transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
         
-        cameraPosition.localRotation =  Quaternion.Euler(rotateBody.y,0,0);
+        cameraPosition.localRotation =  Quaternion.Euler(-rotateBody.y,0,0);
+
+       // _characterController.Move(movement*Time.deltaTime);
+    }
+
+    public void Movement(float dealtaTime)
+    {
+        if (movementState == 1)
+        {
+            currentSpeed += AcclerationMovement * Time.deltaTime;
+            if (currentSpeed >= maxSpeed)
+            {
+
+                currentSpeed = maxSpeed;
+                movementState = 2;
+            }
+        } else if (movementState == 3)
+        {
+            
+            
+
+            currentSpeed -= DeacclerationMovement * Time.deltaTime;
+            
+            if (currentSpeed <=0f )
+            {
+
+                currentSpeed = 0f;
+                movementState = 0;
+            }
+        }
+        movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.x )) * currentSpeed +(externalVilocityOfPlayer) ; 
 
         _characterController.Move(movement*Time.deltaTime);
+
+        
     }
     
     
