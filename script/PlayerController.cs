@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float inputMoveDirx;
     private float inputMoveDiry;
     private Vector3 inputCameraVector;
+
+    public CameraScript _cameraScript;
     
      
 
@@ -220,13 +222,13 @@ public class PlayerController : MonoBehaviour
         }
 
        Movement(Time.deltaTime);
-
+       _cameraScript(inputCameraVector.x, inputCameraVector.y);
   
-        rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
+        /*rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
         transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
         
         cameraPosition.localRotation =  Quaternion.Euler(-rotateBody.y,0,0);
-
+*/
         
         animator.SetInteger("MovementState", movementState);
 
@@ -329,7 +331,23 @@ public class PlayerController : MonoBehaviour
         ToggleControlls();
         Ragdolltest.TogglRagdoll();
     }
-    
-    
-    
+
+
+    /// <summary>
+    /// death of the player
+    /// so does ragdoll
+    /// ... 
+    /// </summary>
+    public void OnDeath()
+    {
+        this.DoRagdoll();
+    }
+    /// <summary>
+    /// called after death when the player id Revived
+    /// </summary>
+    public void OnRevive()
+    {
+        this.DoRagdoll();
+    }
+
 }

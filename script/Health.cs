@@ -7,8 +7,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+   
     private float max_health =100f;
        
+    /// <summary>
+    /// the maxium health
+    /// </summary>
     public float maxhealth {
         get { return max_health; }
         set
@@ -18,6 +22,9 @@ public class Health : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// the current health
+    /// </summary>
     public float current_health;
     public float health {
         get { return current_health; }
@@ -30,21 +37,35 @@ public class Health : MonoBehaviour
 
     public bool isdeath=false;
 
+    /// <summary>
+    /// by default make current health equal to max health
+    /// </summary>
     private void Awake()
     {
         health = maxhealth;
     }
 
+    /// <summary>
+    /// triggers whn the conditions for death is meeted
+    /// </summary>
     public virtual void OnDeath()
     {
         
     }
+    
+    /// <summary>
+    /// when conditions for bering alive is meet after death
+    /// </summary>
     public virtual void OnRevive()
     {
         
     }
         
     
+    /// <summary>
+    /// checks if confitions for dead and triger is revive or is death denpending 
+    /// </summary>
+    /// <returns></returns>
     public virtual bool isDeath()
     {
         if (isdeath && current_health > 0)
@@ -65,6 +86,9 @@ public class Health : MonoBehaviour
 
 
 
+    /// <summary>
+    /// trigger when Max healt id changed 
+    /// </summary>
     public virtual void OnMaxHealtSet()
     {
         
@@ -102,8 +126,5 @@ public class Health : MonoBehaviour
         isDeath();
     }
 
-    public void Update()
-    {
-        health -= 1 * Time.deltaTime;
-    }
+   
 }

@@ -13,12 +13,18 @@ namespace script
             _PlayerController = GetComponent<PlayerController>();
         }
 
-        //TODO rangdoll and more features
+        /// <summary>
+        /// will menable the ondeath of player controller
+        /// </summary>
         public override void OnDeath()
         {
             base.OnDeath();
-            _PlayerController.DoRagdoll();
+            _PlayerController.OnDeath();
         }
+        
+        /// <summary>
+        /// trigers the conditions for onRvive
+        /// </summary>
         public override void OnRevive()
         {
             base.OnRevive();
