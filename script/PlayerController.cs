@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     // tem TODO find a better way to ragdoll or even active ragdoll
     public GameObject ragdollOBJ;
     public Animator ragdollAnimator;
+    public ragdolltest Ragdolltest;
 
     
 
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 externalVilocityOfPlayer; // vilocity of player cause by gravity and other forces
     public Vector3 rotateBody; // current vilosity  of  player's rotation
     
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -105,7 +107,7 @@ public class PlayerController : MonoBehaviour
         input_move.performed += context => OnInputLook(context);
         input_move.canceled += ctx => OnInputLook(ctx);
 
-        input_ragdoll.performed += ct => OnRagdoll();
+        input_ragdoll.performed += ct => Ragdolltest.TogglRagdoll();
         
 
         
@@ -262,13 +264,17 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
-    public void OnRagdoll()
+    public void DisableControlls()
     {
-        ragdollOBJ.SetActive(true);
-        ragdollAnimator.enabled = false;
-        _characterController.enabled = false;
-        GetComponent<CapsuleCollider>().enabled = false;
+        //todo
+        
+
+    }
+
+    public void EnableControlls()
+    {
+        //todo
+
     }
     
     
