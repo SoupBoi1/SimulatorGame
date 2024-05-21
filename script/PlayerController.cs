@@ -264,6 +264,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// disables the player movmeent 
+    /// </summary>
     public void DisableControlls()
     {
         //todo
@@ -271,6 +274,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// enable the player movment
+    /// </summary>
     public void EnableControlls()
     {
         //todo
@@ -281,6 +287,9 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    /// <summary>
+    /// toggles player movment
+    /// </summary>
     public void ToggleControlls()
     {
         //todo
@@ -296,6 +305,25 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// enables the ragdoll
+    /// </summary>
+    public void DoRagdoll() // todo need better way to mamge Ragdoll
+    {
+        DisableControlls();
+        Ragdolltest.makeAllEBFREE();
+    }
+    /// <summary>
+    /// disables the ragdoll
+    /// </summary>
+    public void UnRagdoll() // todo need better way to mamge Ragdoll
+    {
+        EnableControlls();
+        Ragdolltest.makeAllEBStatic();
+    }
+    /// <summary>
+    /// toggols  ragdoll
+    /// </summary>
     public void ToggleRagdoll() // todo need better way to mamge Ragdoll
     {
         ToggleControlls();

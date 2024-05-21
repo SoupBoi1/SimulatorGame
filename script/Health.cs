@@ -7,8 +7,26 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxhealth =100f;
-    public float health;
+    private float max_health =100f;
+       
+    public float maxhealth {
+        get { return max_health; }
+        set
+        {
+            OnMaxHealtSet();
+            max_health = value;
+        }
+    }
+    
+    public float current_health;
+    public float health {
+        get { return current_health; }
+        set
+        {
+            isDeath();
+            current_health = value;
+        }
+    }
 
     public bool isdeath=false;
 
@@ -21,17 +39,36 @@ public class Health : MonoBehaviour
     {
         
     }
+    public virtual void OnRevive()
+    {
         
+    }
+        
+    
     public virtual bool isDeath()
     {
-        isdeath =health <= 0;
-        if(isdeath)
+        if (isdeath && current_health > 0)
+        {
+            OnRevive();
+        }
+        isdeath =current_health <= 0;
+        
+        if (isdeath)
+        {
             OnDeath();
+        }
+        
+            
         
         return isdeath;
     }
-    
 
+
+
+    public virtual void OnMaxHealtSet()
+    {
+        
+    }
 
          /// <summary>
          ///       adds h number of health added to health and clamps if health is greater then max health of the onject <c>Health</c>
@@ -65,5 +102,8 @@ public class Health : MonoBehaviour
         isDeath();
     }
 
-
+    public void Update()
+    {
+        health -= 1 * Time.deltaTime;
+    }
 }
