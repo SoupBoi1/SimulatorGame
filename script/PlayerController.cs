@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEditor;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ragdollOBJ.SetActive(false);
+        //ragdollOBJ.SetActive(false);
         inputMoveDir = Vector3.zero;
         inputCameraVector = Vector3.zero;
         rotateBody = Vector3.zero;
