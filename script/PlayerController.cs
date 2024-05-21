@@ -88,9 +88,13 @@ public class PlayerController : MonoBehaviour
         
         gobalGravity = Physics.gravity;
         externalVilocityOfPlayer = gobalGravity;
-        _transform = GetComponent<Transform>();
         
+        
+        _transform = GetComponent<Transform>();
         _characterController = GetComponent<CharacterController>();
+
+        _cameraScript.rotateTHE = this.transform;
+        
         _inputActionMap_OnFoot = _inputActionAsset.FindActionMap("onFoot");
         _inputActionMap_OnFoot.Enable();
         _inputActionMap_Camera = _inputActionAsset.FindActionMap("Camera");
@@ -112,6 +116,7 @@ public class PlayerController : MonoBehaviour
         input_ragdoll.performed += ct => ToggleRagdoll();
         
 
+        
         
         animator.SetBool("land",true);
 
@@ -222,7 +227,7 @@ public class PlayerController : MonoBehaviour
         }
 
        Movement(Time.deltaTime);
-       _cameraScript(inputCameraVector.x, inputCameraVector.y);
+       _cameraScript.LOOK(inputCameraVector.x, inputCameraVector.y);
   
         /*rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
         transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);

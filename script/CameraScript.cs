@@ -11,6 +11,7 @@ public class CameraScript : MonoBehaviour
      */
     public Transform Subject;
 
+    public Transform rotateTHE;
     private Vector3 pos_offset_value;
 
     public Vector3 pos_offset
@@ -37,6 +38,10 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (rotateTHE == null)
+        {
+            rotateTHE = Subject;
+        }
         pos_offset = Vector3.zero;
         rotateBody = Vector3.zero;
         Cursor.lockState = CursorLockMode.Locked;
@@ -71,7 +76,7 @@ public class CameraScript : MonoBehaviour
         
         rotateBody += new Vector3(x, y,0);
 
-         transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
+        rotateTHE.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
         
         Subject.localRotation =  Quaternion.Euler(-rotateBody.y,0,0);
     }
