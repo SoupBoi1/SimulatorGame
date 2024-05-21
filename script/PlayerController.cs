@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         input_move.performed += context => OnInputLook(context);
         input_move.canceled += ctx => OnInputLook(ctx);
 
-        input_ragdoll.performed += ct => Ragdolltest.TogglRagdoll();
+        input_ragdoll.performed += ct => ToggleRagdoll();
         
 
         
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_characterController.isGrounded) // TODO fixjump
+        if (!_characterController.isGrounded && _characterController.enabled) // TODO fixjump
         {
             if (ungrounedTimer <= 0)
             {
@@ -267,14 +267,39 @@ public class PlayerController : MonoBehaviour
     public void DisableControlls()
     {
         //todo
-        
+        _characterController.enabled = false;
 
     }
 
     public void EnableControlls()
     {
         //todo
+        Vector3 temcurrentPosition = ragdollOBJ.transform.GetChild(0).position;
+        _characterController.enabled = true;
+            
+        transform.position = temcurrentPosition;// corrects the chacter controller postio to the current postiion of the player after ragedoll 
 
+
+    }
+    public void ToggleControlls()
+    {
+        //todo
+        if (_characterController.enabled)
+        {
+            DisableControlls();
+        }
+        else
+        {
+            EnableControlls();
+        }
+
+
+    }
+
+    public void ToggleRagdoll() // todo need better way to mamge Ragdoll
+    {
+        ToggleControlls();
+        Ragdolltest.TogglRagdoll();
     }
     
     
