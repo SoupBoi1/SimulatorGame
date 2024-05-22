@@ -44,16 +44,17 @@ using UnityEngine.Animations.Rigging;
                     configurableJoint.axis = c.axis;
                     configurableJoint.connectedAnchor = c.connectedAnchor;
                    // configurableJoint.secondaryAxis = c.swingAxis;
-                    configurableJoint.xMotion = ConfigurableJointMotion.Limited;
-                    configurableJoint.yMotion = ConfigurableJointMotion.Limited;
-                    configurableJoint.zMotion = ConfigurableJointMotion.Limited;
-                    configurableJoint.angularXMotion = ConfigurableJointMotion.Free;
-                    configurableJoint.angularYMotion = ConfigurableJointMotion.Free;
-                    configurableJoint.angularZMotion = ConfigurableJointMotion.Free;
+                    configurableJoint.xMotion = ConfigurableJointMotion.Locked;
+                    configurableJoint.yMotion = ConfigurableJointMotion.Locked;
+                    configurableJoint.zMotion = ConfigurableJointMotion.Locked;
+                    configurableJoint.angularXMotion = ConfigurableJointMotion.Limited;
+                    configurableJoint.angularYMotion = ConfigurableJointMotion.Limited;
+                    configurableJoint.angularZMotion = ConfigurableJointMotion.Limited;
 
 
                     var drive = configurableJoint.angularXDrive;
-                    drive.positionSpring = 1;
+                    drive.positionSpring = 1500;
+                    drive.positionDamper = 10;
                     configurableJoint.angularXDrive = drive;
                     configurableJoint.angularYZDrive = drive;
 
@@ -96,8 +97,9 @@ using UnityEngine.Animations.Rigging;
         {
             if (justcopy==true)
             {
-                transform.position = copy.position;
-                transform.rotation = copy.rotation;
+                
+                transform.position = new Vector3(copy.position.x, transform.position.y, copy.position.z);
+                //transform.rotation = copy.rotation;
             }
             else
             {
