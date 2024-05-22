@@ -34,6 +34,8 @@ public class ragdolltest : MonoBehaviour
         //DFSofchilds(makeRBFrezzes);
         DFSofchilds(makeRBfree);
         makeAllEBFREE();
+        _root.GetComponent<Rigidbody>().isKinematic = true;
+        
     }
     /// <summary>
     /// toggles the ragdoll mode or animation mode
@@ -110,7 +112,10 @@ public class ragdolltest : MonoBehaviour
                     this.DFSofchildsLoop(t,found,stack,fun);
                 }
 
-                fun(t);
+                
+                    fun(t);
+                
+                
                 
               //  Debug.Log(t.name);
                 
