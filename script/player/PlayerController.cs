@@ -233,9 +233,9 @@ public class PlayerController : MonoBehaviour
        {
 
           
-               if(_Raycaster.hit.transform.TryGetComponent(out Item interactable))
+               if(_Raycaster.hit.transform.TryGetComponent(out  IGrabable item))
                {
-                   interactable.Interact();
+                   item.Grab();
                }
            
        }

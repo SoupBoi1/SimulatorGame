@@ -7,7 +7,7 @@ using UnityEngine;
 /// 
 /// need a Raycaster component to function
 /// </summary>
-    public class GunWeapon:MeleeWeapon
+    public class GunWeapon:MeleeWeapon,IShootable
     {
         /// <summary>
         /// damage done when shot 
@@ -22,5 +22,9 @@ using UnityEngine;
         {
             
         }
-        
+
+        public override void Melee()
+        {
+            throw new System.NotImplementedException();
+        }
     }

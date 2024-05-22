@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class Button:GrabableItems 
+    public class Button:GrabableItems,InteractableItem 
     {
         private bool buttonState_value=false;
         
@@ -21,7 +21,7 @@ using UnityEngine;
         }
         public void Awake()
         {
-            value_cost_in_money = 10;
+            cost = 10;
         }
 
 

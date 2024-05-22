@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// base of melee weapons
 /// </summary>
-    public class MeleeWeapon:GrabableItems
+    public abstract class MeleeWeapon:GrabableItems,IMeleeable
     {
         /// <summary>
         /// damgage done when melled 
@@ -16,10 +16,17 @@ using UnityEngine;
         /// <summary>
         /// call to perfrom melee acttack
         /// </summary>
-        public virtual void Melee()
+        public abstract void Melee();
+     
+
+        public override void Grab()
         {
-            
-            
+            throw new System.NotImplementedException();
         }
-        
+
+        public override void Inpect()
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
