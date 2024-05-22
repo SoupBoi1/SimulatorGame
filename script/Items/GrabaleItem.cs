@@ -37,8 +37,10 @@ public class GrabaleItem : Item,IGrabable
     private  bool isGrabable_value = true;
     
 
-    public virtual void Grab()
+    public virtual void Grab(Transform t)
     {
+        transform.parent = t;
+        transform.localPosition = Vector3.zero;
         //throw new NotImplementedException();
     }
 

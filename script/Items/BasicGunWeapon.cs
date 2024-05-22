@@ -25,13 +25,10 @@ using UnityEngine;
         /// <summary>
         /// call to shoot the weapon 
         /// </summary>
-        public void Shot()
+        public virtual void Shot()
         {
             
         }
 
-        public override void Grab()
-        {
-            base.Grab();
-        } 
+     
     }

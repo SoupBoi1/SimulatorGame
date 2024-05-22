@@ -76,8 +76,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 movement;// current movment of th vilocity of the player
     public Vector3 externalVilocityOfPlayer; // vilocity of player cause by gravity and other forces
     public Vector3 rotateBody; // current vilosity  of  player's rotation
-    
-    
+
+
+    public Movement _movement;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +93,8 @@ public class PlayerController : MonoBehaviour
         
         _transform = GetComponent<Transform>();
         _characterController = GetComponent<CharacterController>();
+        
+        _movement = GetComponent<Movement>();
 
         _cameraScript.rotateTHE = this.transform;
         
@@ -227,6 +230,8 @@ public class PlayerController : MonoBehaviour
         }
 
        Movement(Time.deltaTime);
+       
+       //_characterController.Move(_movement.MoveInDir(inputMoveDir)*Time.deltaTime);
        _cameraScript.LOOK(inputCameraVector.x, inputCameraVector.y);
 
        if (_Raycaster.hitHappend)
@@ -235,7 +240,7 @@ public class PlayerController : MonoBehaviour
           
                if(_Raycaster.hit.transform.TryGetComponent(out  IGrabable item))
                {
-                   item.Grab();
+                   item.Grab(transform);
                }
            
        }
@@ -260,7 +265,11 @@ public class PlayerController : MonoBehaviour
             
             
 
-            currentSpeed -= DeacclerationMovement * Time.deltaTime;
+            if (!isinAir)
+            {
+                currentSpeed -= DeacclerationMovement * Time.deltaTime;
+
+            }
             
             if (currentSpeed <=0f )
             {

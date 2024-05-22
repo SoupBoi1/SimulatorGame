@@ -2746,6 +2746,7 @@ GameObject:
   - component: {fileID: 874995251}
   - component: {fileID: 874995258}
   - component: {fileID: 874995257}
+  - component: {fileID: 874995259}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2931,11 +2932,12 @@ MonoBehaviour:
   AcclerationMovement: 9
   DeacclerationMovement: 10
   TurnDeacclerationMovement: 100
-  maxSpeed: 10
+  maxSpeed: 50
   gobalGravity: {x: 0, y: 0, z: 0}
   movement: {x: 0, y: 0, z: 0}
   externalVilocityOfPlayer: {x: 0, y: 0, z: 0}
   rotateBody: {x: 0, y: 0, z: 0}
+  _movement: {fileID: 0}
 --- !u!143 &874995258
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2962,6 +2964,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &874995259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874995250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7b9bd9c71347a7bf40d833ca246c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isinAir: 0
+  fallDelay: 5
+  jumpBuffer: 5
+  currentSpeed: 0
+  AcclerationMovement: 3
+  DeacclerationMovement: 1
+  TurnDeacclerationMovement: 100
+  maxSpeed: 10
+  gobalGravity: {x: 0, y: 0, z: 0}
+  movement: {x: 0, y: 0, z: 0}
+  externalVilocityOfPlayer: {x: 0, y: 0, z: 0}
 --- !u!144 &902254518
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -19821,11 +19846,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1935559822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff2c0310c8a4d5286c8ffadce3afc29, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c5528fb063c45c2866ff15d5c3cee94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractable_vaule: 1
   GrabPosition: {fileID: 0}
+  meleeDamage: 5.38
+  shotDamage: 0
 --- !u!1 &2025748524
 GameObject:
   m_ObjectHideFlags: 0
