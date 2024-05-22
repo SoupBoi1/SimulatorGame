@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-
+/// <summary>
+/// base of item that are interactable and GrabableItem
+///
+/// 
+/// </summary>
 public class BasicInteractableAndGrabableItem :InteractableAndGrabable
 {
     public override void Grab()

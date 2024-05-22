@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
-/// base of melee weapons
+///
+/// 
+/// Don not use abstract!!! yet 
 /// </summary>
     public abstract class MeleeWeapon:GrabableItem,IMeleeable
     {

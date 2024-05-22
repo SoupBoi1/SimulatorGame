@@ -5,7 +5,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-
+/// <summary>
+/// base of grable item only
+///
+/// 
+/// </summary>
 public class BasicGrabaleItem : GrabableItem
 {
 

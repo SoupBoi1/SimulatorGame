@@ -1,4 +1,9 @@
 
+/// <summary>
+/// allow melee
+///
+/// 
+/// </summary>
     public interface IMeleeable
     {
         /// <summary>

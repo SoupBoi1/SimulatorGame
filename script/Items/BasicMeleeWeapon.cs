@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
+/// <summary>
+/// base of melee weapons
+///
+/// 
+/// </summary>
     public class BasicMeleeWeapon:BasicGrabaleItem,IMeleeable
     {
         

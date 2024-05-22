@@ -5,9 +5,9 @@ using UnityEngine;
 
 
 /// <summary>
-/// a static button in one place
+/// a button that can be grabed
 /// </summary>
-    public class Button:InteractableItem
+    public class GrabableButton:Button,IGrabable
     {
         private bool buttonState_value=false;
         
@@ -47,5 +47,13 @@ using UnityEngine;
             Debug.Log("Button down: "+ ButtonState );
         }
 
+        public  void Grab()
+        {
+            Debug.Log("button held" + ButtonState);
+        }
 
+        public  void Inpect()
+        {
+            throw new NotImplementedException();
+        }
     }

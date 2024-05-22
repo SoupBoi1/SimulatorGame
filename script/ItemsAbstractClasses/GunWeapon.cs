@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 ///
 /// 
-/// need a Raycaster component to function
+/// Don not use abstract!!! yet 
 /// </summary>
     public abstract class GunWeapon:MeleeWeapon,IShootable
     {

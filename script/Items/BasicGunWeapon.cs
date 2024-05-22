@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// base of gun weapons
+///
+/// 
+/// </summary>
     public class BasicGunWeapon:BasicMeleeWeapon,IShootable
     {
         
