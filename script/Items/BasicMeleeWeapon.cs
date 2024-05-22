@@ -11,7 +11,7 @@ using UnityEngine;
 ///
 /// 
 /// </summary>
-    public class BasicMeleeWeapon:BasicGrabaleItem,IMeleeable
+    public class MeleeWeapon:GrabaleItem,IMeleeable
     {
         
         /// <summary>
@@ -26,5 +26,10 @@ using UnityEngine;
         public virtual void Melee()
         {
             
+        }
+
+        public void Start()
+        {
+            isInteractable = false;
         }
     }

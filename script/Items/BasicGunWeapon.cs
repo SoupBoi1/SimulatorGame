@@ -10,9 +10,10 @@ using UnityEngine;
 ///
 /// 
 /// </summary>
-    public class BasicGunWeapon:BasicMeleeWeapon,IShootable
+    public class BasicGunWeapon:MeleeWeapon,IShootable
     {
         
+                
         
         /// <summary>
         /// damage done when shot 

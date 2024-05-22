@@ -11,6 +11,8 @@ using UnityEngine;
 /// </summary>
     public class BasicItem:Item
     {
-        
-     
+        public override void Interact()
+        {
+           // throw new NotImplementedException();
+        }
     }

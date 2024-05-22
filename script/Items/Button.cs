@@ -7,8 +7,10 @@ using UnityEngine;
 /// <summary>
 /// a static button in one place
 /// </summary>
-    public class Button:InteractableItem
+    public class Button:GrabaleItem
     {
+        
+        
         private bool buttonState_value=false;
         
         private bool ButtonState
@@ -35,7 +37,7 @@ using UnityEngine;
             Debug.Log("Button down: "+ ButtonState );
 
         }
-
+  
 
 
         
