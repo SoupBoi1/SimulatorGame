@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 movementState = 3;
-                Debug.Log("movemnt state:"+ movementState);
+//                Debug.Log("movemnt state:"+ movementState);
             }
             
 
