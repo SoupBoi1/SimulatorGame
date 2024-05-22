@@ -1004,6 +1004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 1393010408}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!4 &273388973 stripped
@@ -1542,6 +1543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 1451867246}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!144 &546350501
@@ -3538,6 +3540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 722261415}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!136 &935868633
@@ -3577,6 +3580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 330314028}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!144 &935868635
@@ -3764,7 +3768,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 10
+  m_Constraints: 122
   m_CollisionDetection: 2
 --- !u!65 &947718778
 BoxCollider:
@@ -3801,6 +3805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 212554837}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 947718777}
   justcopy: 1
 --- !u!114 &999987300
@@ -7732,6 +7737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 1723253412}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!54 &1570403931
@@ -7844,6 +7850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 312958402}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!153 &1570403935
@@ -8284,6 +8291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 596128073}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!153 &1591201260
@@ -21044,6 +21052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 1947570771}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!43 &1889389038
@@ -21225,6 +21234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 125076310}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!144 &1909002385
@@ -21413,6 +21423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   configurableJoint: {fileID: 0}
   copy: {fileID: 217806742}
+  Join: {x: 0, y: 0, z: 0, w: 0}
   RB: {fileID: 0}
   justcopy: 0
 --- !u!153 &1964879122
@@ -23499,7 +23510,7 @@ PrefabInstance:
     - target: {fileID: -2656431786303760210, guid: 951a62707570046ad94a9779fb1a26c0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 951a62707570046ad94a9779fb1a26c0,
         type: 3}
@@ -23514,7 +23525,7 @@ PrefabInstance:
     - target: {fileID: 7882376022164389543, guid: 951a62707570046ad94a9779fb1a26c0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

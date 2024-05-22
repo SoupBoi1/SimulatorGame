@@ -13,6 +13,7 @@ using UnityEngine.Animations.Rigging;
 
         public ConfigurableJoint configurableJoint;
         public Transform copy;
+        public Quaternion Join;
         public Rigidbody RB;
         public bool justcopy;
 
@@ -25,6 +26,7 @@ using UnityEngine.Animations.Rigging;
             //configurableJoints = new ConfigurableJoint [count];
            // Transform _t;
             //Debug.Log(count);
+            Join = transform.localRotation;
 
             
             if (TryGetComponent(out Rigidbody r))
@@ -38,12 +40,16 @@ using UnityEngine.Animations.Rigging;
                 if (TryGetComponent(out CharacterJoint c))
                 {
                     print(transform.name);
+
                     configurableJoint = transform.AddComponent<ConfigurableJoint>();
+                    ConfigurableJointExtensions.SetupAsCharacterJoint(configurableJoint);
+
                     configurableJoint.connectedBody = c.connectedBody;
                     configurableJoint.anchor = c.anchor;
                     configurableJoint.axis = c.axis;
                     configurableJoint.connectedAnchor = c.connectedAnchor;
-                   // configurableJoint.secondaryAxis = c.swingAxis;
+                    configurableJoint.configuredInWorldSpace = false;
+                   /*
                     configurableJoint.xMotion = ConfigurableJointMotion.Locked;
                     configurableJoint.yMotion = ConfigurableJointMotion.Locked;
                     configurableJoint.zMotion = ConfigurableJointMotion.Locked;
@@ -57,7 +63,9 @@ using UnityEngine.Animations.Rigging;
                     drive.positionDamper = 10;
                     configurableJoint.angularXDrive = drive;
                     configurableJoint.angularYZDrive = drive;
-
+                    */
+                   
+                   
                      Destroy(c);
                     //   configurableJoints[i] = configurableJoint;
 
@@ -97,16 +105,20 @@ using UnityEngine.Animations.Rigging;
         {
             if (justcopy==true)
             {
-                
                 transform.position = new Vector3(copy.position.x, transform.position.y, copy.position.z);
-                //transform.rotation = copy.rotation;
+                transform.rotation = copy.rotation;
             }
             else
             {
+                ConfigurableJointExtensions.SetTargetRotationLocal(configurableJoint,copy.localRotation,Join);
+                //ConfigurableJointExtensions.SetTargetRotationLocal(configurableJoint,copy.localRotation,transform.localRotation);
+
+/*
                 configurableJoint.targetPosition = copy.position; 
                 configurableJoint.targetVelocity = new Vector3(5, 5, 5);
                 configurableJoint.targetRotation = copy.rotation;
                 configurableJoint.targetAngularVelocity = new Vector3(5, 5, 5);
+                */
             }
             
 
