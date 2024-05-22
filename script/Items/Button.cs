@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class Button:GrabableItems,InteractableItem 
+    public class Button:BasicInteractableAndGrabableItem
     {
         private bool buttonState_value=false;
         
@@ -45,7 +45,7 @@ using UnityEngine;
 
         public override void Grab()
         {
-            throw new NotImplementedException();
+            Debug.Log("button held" + ButtonState);
         }
 
         public override void Inpect()

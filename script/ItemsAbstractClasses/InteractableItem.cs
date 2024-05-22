@@ -9,7 +9,7 @@ public abstract class InteractableItem : Item,IInteractable
 {
 
     /// <summary>
-    /// DONOT USE WHEN PROGRAMING ONLY FOR
+    /// DONOT USE WHEN PROGRAMING ONLY FOR INPECTOR ONLY
     /// </summary>
     public bool  isInteractable_vaule = true;
 

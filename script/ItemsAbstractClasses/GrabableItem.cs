@@ -4,7 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 
-public  class GrabableItems:Item 
+public abstract  class GrabableItem:Item ,IGrabable
 {
         //one of the grab position on the objthis componet is acttact to
         public Transform GrabPosition;
@@ -34,28 +34,16 @@ public  class GrabableItems:Item
        /// <summary>
        /// Grabs the Item
        /// </summary>
-       public virtual void Grab()
-       {
-           
-       }
+       public abstract void Grab();
 
 
 
        /// <summary>
        /// call to trigger a inpect animation whent held
        /// </summary>
-       public virtual void Inpect()
-       {
-           
-       }
-        
-        
-        /// <summary>
-        /// call to trigger a inpect animation whent held
-        /// </summary>
-        public virtual  void SetGrabable(bool value)
-        {
-            
-        }
-        
+       public abstract void Inpect();
+
+
+
+
 }

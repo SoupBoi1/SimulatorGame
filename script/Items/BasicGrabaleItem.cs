@@ -6,18 +6,18 @@ using UnityEditor;
 using UnityEngine;
 
 
-public class BasicGrabaleItem:GrabableItems
+public class BasicGrabaleItem : GrabableItem
 {
 
 
     public override void Grab()
     {
-              
-        Debug.Log("working"+cost);
+        //throw new NotImplementedException();
     }
 
     public override void Inpect()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
+}
 
