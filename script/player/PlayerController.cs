@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
 
 
     public Movement _movement;
+
+    public HoldRB _HoldRb;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -117,10 +120,10 @@ public class PlayerController : MonoBehaviour
         input_move.canceled += ctx => OnInputLook(ctx);
 
         input_ragdoll.performed += ct => ToggleRagdoll();
-        
 
-        
-        
+
+
+        _HoldRb = GetComponent<HoldRB>();
         animator.SetBool("land",true);
 
     }
@@ -233,6 +236,8 @@ public class PlayerController : MonoBehaviour
        
        //_characterController.Move(_movement.MoveInDir(inputMoveDir)*Time.deltaTime);
        _cameraScript.LOOK(inputCameraVector.x, inputCameraVector.y);
+       animator.SetFloat("runspeedx",inputCameraVector.x);
+       animator.SetFloat("runspeedy",inputCameraVector.y);
 
        if (_Raycaster.hitHappend)
        {
@@ -240,7 +245,11 @@ public class PlayerController : MonoBehaviour
           
                if(_Raycaster.hit.transform.TryGetComponent(out  IGrabable item))
                {
-                   item.Grab(transform);
+                   //item.Grab(transform);
+                   //_HoldRb.rigidBody = _Raycaster.hit.rigidbody;
+                   _HoldRb.setRB(_Raycaster.hit.rigidbody);
+                   _HoldRb.Grab(transform.position);
+
                }
            
        }
@@ -251,21 +260,22 @@ public class PlayerController : MonoBehaviour
 
     public void Movement(float dealtaTime)
     {
-        if (movementState == 1)
+        if (movementState == 1 ||movementState == 2 ) // braking the movement here as long THE playe is in air speed will keep on increasing 
         {
-            currentSpeed += AcclerationMovement * Time.deltaTime;
-            if (currentSpeed >= maxSpeed)
+            if (currentSpeed >= maxSpeed && !isinAir)// braking the movement here as long THE playe is in air speed will keep on increasing 
             {
 
                 currentSpeed = maxSpeed;
                 movementState = 2;
             }
+            currentSpeed += AcclerationMovement * Time.deltaTime;
+            
         } else if (movementState == 3)
         {
             
             
 
-            if (!isinAir)
+            if (!isinAir )
             {
                 currentSpeed -= DeacclerationMovement * Time.deltaTime;
 
