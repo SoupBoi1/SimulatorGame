@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -11,7 +12,10 @@ public class Item : MonoBehaviour
     /// </summary>
     public Money value_cost_in_money;
     
-    private bool  isInteractable_vaule = true;
+    /// <summary>
+    /// DONOT USE WHEN PROGRAMING ONLY FOR
+    /// </summary>
+    public bool  isInteractable_vaule = true;
 
 
     
@@ -20,7 +24,7 @@ public class Item : MonoBehaviour
     /// true - yes it is Interactable<br></br>
     /// false - no it is not Interactable<br></br>
     /// </summary>
-    public bool isInteractable
+    public  bool isInteractable
     {
         get
         {
@@ -32,11 +36,11 @@ public class Item : MonoBehaviour
     /// <summary>
     /// usess the Item 
     /// </summary>
-    public  virtual void Use()
+    public virtual void Interact()
     {
-        //your function here
-        
+        Debug.Log("wornge");
     }
+    
 
     
     /// <summary>
@@ -54,15 +58,9 @@ public class Item : MonoBehaviour
         isInteractable_vaule = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
+    
+    
+    
+  
 }

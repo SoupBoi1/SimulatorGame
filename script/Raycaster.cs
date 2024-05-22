@@ -8,8 +8,16 @@ public class Raycaster : MonoBehaviour
     int layerMask =0;
     private bool hithappend = false;
 
+    public bool hitHappend
+    {
+        get
+        {
+            return hithappend;
+        }
+    }
+
     
-    RaycastHit hit;
+    public RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {

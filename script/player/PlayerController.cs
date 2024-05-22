@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 inputCameraVector;
 
     public CameraScript _cameraScript;
-    
+    public Raycaster _Raycaster;
      
 
     private Transform _transform;
@@ -228,12 +228,17 @@ public class PlayerController : MonoBehaviour
 
        Movement(Time.deltaTime);
        _cameraScript.LOOK(inputCameraVector.x, inputCameraVector.y);
-  
-        /*rotateBody += new Vector3(inputCameraVector.x, inputCameraVector.y);
-        transform.localRotation =  Quaternion.Euler(0,rotateBody.x,0);
-        
-        cameraPosition.localRotation =  Quaternion.Euler(-rotateBody.y,0,0);
-*/
+
+       if (_Raycaster.hitHappend)
+       {
+
+          
+               if(_Raycaster.hit.transform.TryGetComponent(out Item interactable))
+               {
+                   interactable.Interact();
+               }
+           
+       }
         
         animator.SetInteger("MovementState", movementState);
 
