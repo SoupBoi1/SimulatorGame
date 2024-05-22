@@ -31,7 +31,9 @@ public class ragdolltest : MonoBehaviour
 
     public void init()
     {
-        DFSofchilds(makeRBFrezzes);
+        //DFSofchilds(makeRBFrezzes);
+        DFSofchilds(makeRBfree);
+        makeAllEBFREE();
     }
     /// <summary>
     /// toggles the ragdoll mode or animation mode
@@ -141,11 +143,38 @@ public class ragdolltest : MonoBehaviour
         if (t.GetComponent<Rigidbody>() !=null)
         {
             Rigidbody rb = t.GetComponent<Rigidbody>();
+            
             rb.isKinematic = false;
             rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
            // rb.mass = 99999;
             rb.useGravity = true;
             rb.excludeLayers = 0x80;
+
+            /*
+            int count = t.childCount;
+            Transform _t;
+            for (int i = 0; i < count; i++)
+            {
+                _t = t.GetChild(i);
+                ConfigurableJoint configurableJoint;
+                if (t.TryGetComponent(out ConfigurableJoint configurableJoint_t))
+                {
+                    configurableJoint = configurableJoint_t;
+                }
+                else
+                {
+
+                    configurableJoint = t.AddComponent<ConfigurableJoint>();
+
+                }
+
+                configurableJoint.connectedBody = _t.GetComponent<Rigidbody>();
+                
+                
+               
+            }*/
+
+
 
 
         }

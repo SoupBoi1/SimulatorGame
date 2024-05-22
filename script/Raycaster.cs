@@ -6,7 +6,7 @@ public class Raycaster : MonoBehaviour
 {
     
     int layerMask =0;
-    private bool hithappend = false;
+    public bool hithappend = false;
 
     public bool hitHappend
     {

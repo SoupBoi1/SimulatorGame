@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Users;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController _characterController;
+    public CharacterController _characterController;
     public InputActionAsset _inputActionAsset;
     private InputActionMap _inputActionMap_OnFoot;
     private InputActionMap _inputActionMap_Camera;
