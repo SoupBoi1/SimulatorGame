@@ -45,7 +45,6 @@ using UnityEngine;
             if (TryGetComponent(out Shooter sh))
             {
                 Shooter = sh;
-                Shooter.Lockon = true;
             }
         }
         

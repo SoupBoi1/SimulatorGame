@@ -10,10 +10,7 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
 {
     int layerMask =0;
 
-    /// <summary>
-    /// the position of where the raycast is facing in the world space<br></br>
-    /// </summary>
-    public Vector3 lockOnPosition = Vector3.zero;
+
 
    
    /// <summary>
@@ -33,31 +30,11 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
         }
     }
 
-    private bool lockon_value;
-    /// <summary>
-    ///  enables Lock on mode where the ray cast points to a position <value>lockOnPosition</value> at all times
-    /// </summary>
-    public bool Lockon
-    {
-        get
-        {
-            return lockon_value;
-        }
-        set
-        {
-            Lockon = value;
-           
-           
-        }
-    }
+  
 
     
     public RaycastHit hit;
-    /// <summary>
-    /// the current direction use whihc is either pointing to world position <value>lockOnPosition</value> or a local direcion <value>local_Dir</value>
-    /// </summary>
-    private Vector3 currentDirection = Vector3.forward;
-    // Start is called before the first frame update
+ 
     void Start()
     {
         layerMask = ~(1<<8);
@@ -69,10 +46,10 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
     {            
 
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(local_Dir), out hit, Mathf.Infinity, layerMask))
         {
             hithappend = true;
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
+            Debug.DrawRay(transform.position, transform.TransformDirection(local_Dir) * hit.distance,
                 Color.red);
             if (hit.transform.TryGetComponent(out IHealth h))
             {
@@ -89,29 +66,9 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
         
        
     }
-/// <summary>
-/// the dirtion is calulated in this value 
-/// </summary>
-/// <returns></returns>
-    public Vector3 calulateLockOnDirction()
-    {
-         return (lockOnPosition -this.transform.position).normalized ;
 
-    }
 
-    /*public void Update()
-    {
-        if (Lockon)
-        {
-            currentDirection = calulateLockOnDirction();
 
-        }
-        else
-        {
-            currentDirection = transform.TransformDirection(local_Dir);
-        }
-        
-    }*/
 
     /// <summary>
     ///  

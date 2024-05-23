@@ -723,7 +723,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
@@ -2747,6 +2747,8 @@ GameObject:
   - component: {fileID: 874995258}
   - component: {fileID: 874995257}
   - component: {fileID: 874995259}
+  - component: {fileID: 874995260}
+  - component: {fileID: 874995261}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2938,6 +2940,7 @@ MonoBehaviour:
   externalVilocityOfPlayer: {x: 0, y: 0, z: 0}
   rotateBody: {x: 0, y: 0, z: 0}
   _movement: {fileID: 0}
+  _HoldRb: {fileID: 0}
 --- !u!143 &874995258
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2987,6 +2990,35 @@ MonoBehaviour:
   gobalGravity: {x: 0, y: 0, z: 0}
   movement: {x: 0, y: 0, z: 0}
   externalVilocityOfPlayer: {x: 0, y: 0, z: 0}
+--- !u!114 &874995260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874995250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbcfb23caab44baa7193387d44c3464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  istheranythingtograb: 0
+  Force: 10
+--- !u!114 &874995261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874995250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07a42602dfe34dfbafdfcaa24dc5c618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_health: 100
+  isdeath: 0
+  _PlayerController: {fileID: 0}
 --- !u!144 &902254518
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -19716,6 +19748,7 @@ GameObject:
   - component: {fileID: 1935559825}
   - component: {fileID: 1935559824}
   - component: {fileID: 1935559829}
+  - component: {fileID: 1935559830}
   m_Layer: 0
   m_Name: Plank
   m_TagString: Untagged
@@ -19746,7 +19779,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -19830,7 +19863,7 @@ Transform:
   m_GameObject: {fileID: 1935559822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.184, y: 0.9276, z: 0.4144}
+  m_LocalPosition: {x: -4.184, y: 2.45, z: 0.4144}
   m_LocalScale: {x: 1.5081073, y: 0.15508607, z: 0.1712}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19852,7 +19885,21 @@ MonoBehaviour:
   isInteractable_vaule: 1
   GrabPosition: {fileID: 0}
   meleeDamage: 5.38
-  shotDamage: 0
+  Shooter: {fileID: 0}
+  bulletDamage: 22
+--- !u!114 &1935559830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935559822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b143d21e4694440db2a6ee21f9385651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  local_Dir: {x: 0, y: 0, z: 1}
 --- !u!1 &2025748524
 GameObject:
   m_ObjectHideFlags: 0
