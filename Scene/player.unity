@@ -19764,7 +19764,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935559822}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 15
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -19779,7 +19779,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -19863,7 +19863,7 @@ Transform:
   m_GameObject: {fileID: 1935559822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.184, y: 2.45, z: 0.4144}
+  m_LocalPosition: {x: -4.184, y: 1.22, z: 0.4144}
   m_LocalScale: {x: 1.5081073, y: 0.15508607, z: 0.1712}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19885,8 +19885,11 @@ MonoBehaviour:
   isInteractable_vaule: 1
   GrabPosition: {fileID: 0}
   meleeDamage: 5.38
-  Shooter: {fileID: 0}
-  bulletDamage: 22
+  shooter: {fileID: 0}
+  bulletDamage: 1
+  fire_rate: 47
+  fire_wait: 0
+  isShooting: 0
 --- !u!114 &1935559830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19900,6 +19903,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   local_Dir: {x: 0, y: 0, z: 1}
+  gunsRigidbody: {fileID: 1935559824}
+  recoilforce: 23.9
+  forceMode: 1
 --- !u!1 &2025748524
 GameObject:
   m_ObjectHideFlags: 0

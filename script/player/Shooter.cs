@@ -18,6 +18,8 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
    /// </summary>
     public Vector3 local_Dir = Vector3.forward;
 
+    public Rigidbody gunsRigidbody;
+
     private bool hithappend = false;
     /// <summary>
     /// true then raycast hits something
@@ -34,6 +36,10 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
 
     
     public RaycastHit hit;
+
+    public float recoilforce;
+
+    public ForceMode forceMode = ForceMode.Force;
  
     void Start()
     {
@@ -44,27 +50,34 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
 
     public virtual void  Shoot(float damage)
     {            
-
+        applyRecoil();
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(local_Dir), out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(transform.position, getDirction(), out hit, Mathf.Infinity, layerMask))
         {
             hithappend = true;
-            Debug.DrawRay(transform.position, transform.TransformDirection(local_Dir) * hit.distance,
+            Debug.DrawRay(transform.position, getDirction() * hit.distance,
                 Color.red);
             if (hit.transform.TryGetComponent(out IHealth h))
             {
                 Damage(h,damage);
+                
+
             }
         }
         else
         {
             hithappend = false;
            
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            Debug.DrawRay(transform.position, getDirction()* 1000, Color.white);
         }
  
         
        
+    }
+
+    public Vector3 getDirction()
+    {
+        return transform.TransformDirection(local_Dir);
     }
 
 
@@ -110,6 +123,27 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
     public void Damage(IHealth  health,float damage)
     {
         health.Damage(damage);
+    }
+
+    
+    /// <summary>
+    /// recolis the guns rigid body with force of one 
+    /// </summary>
+    /// 
+    public virtual void applyRecoil()
+    {
+        applyRecoiltoRB(recoilforce);
+    }
+    /// <summary>
+    /// recolis the guns rigid body
+    /// </summary>
+    /// <param name="RecoleForce">force of recoile</param>
+    public void applyRecoiltoRB(float RecoleForce)
+    {
+        if (gunsRigidbody != null)
+        {
+            gunsRigidbody.AddForce(-getDirction()*RecoleForce,forceMode);
+        }
     }
 
 

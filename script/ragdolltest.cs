@@ -155,21 +155,6 @@ public class ragdolltest : MonoBehaviour
 }
 
 
-[CustomEditor(typeof(ragdolltest))]
-public class ragdolltestEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        ragdolltest ds = (ragdolltest)target;
-        
-        
-        if (GUILayout.Button( "make ragdoll"))
-        {
-            ds.makeAllEBFREE();
-        }
 
-        
-    }
     
-}
+
