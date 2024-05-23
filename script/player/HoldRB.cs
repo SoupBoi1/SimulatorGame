@@ -54,6 +54,7 @@ public class HoldRB: MonoBehaviour
         
         /// <summary>
         /// gets grabs obj to the desrese location
+        /// TODO fix this to addt to any force
         /// </summary>
         /// <param name="t">location</param>
         public void Grab(Vector3  t)
