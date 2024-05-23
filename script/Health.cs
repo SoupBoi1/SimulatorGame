@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour,IHealth
 {
    
     private float max_health =100f;

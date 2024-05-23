@@ -2,12 +2,29 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class Shooter:MonoBehaviour,IDamager
+/// <summary>
+/// part of a gun that shoots the bullet
+/// a GUN or any commponent can have mutiple of this <c>shooter</c>
+/// </summary>
+public class Shooter:MonoBehaviour,IDamager,IShootable
 {
     int layerMask =0;
-    private bool hithappend = false;
 
+    /// <summary>
+    /// the position of where the raycast is facing in the world space<br></br>
+    /// </summary>
+    public Vector3 lockOnPosition = Vector3.zero;
+
+   
+   /// <summary>
+   /// Dirctionof where the raycast if faing localy
+   /// </summary>
+    public Vector3 local_Dir = Vector3.forward;
+
+    private bool hithappend = false;
+    /// <summary>
+    /// true then raycast hits something
+    /// </summary>
     public bool hitHappend
     {
         get
@@ -16,17 +33,39 @@ public class Shooter:MonoBehaviour,IDamager
         }
     }
 
+    private bool lockon_value;
+    /// <summary>
+    ///  enables Lock on mode where the ray cast points to a position <value>lockOnPosition</value> at all times
+    /// </summary>
+    public bool Lockon
+    {
+        get
+        {
+            return lockon_value;
+        }
+        set
+        {
+            Lockon = value;
+           
+           
+        }
+    }
+
     
     public RaycastHit hit;
+    /// <summary>
+    /// the current direction use whihc is either pointing to world position <value>lockOnPosition</value> or a local direcion <value>local_Dir</value>
+    /// </summary>
+    private Vector3 currentDirection = Vector3.forward;
     // Start is called before the first frame update
     void Start()
     {
         layerMask = ~(1<<8);
 
     }
+   
 
-    // Update is called once per frame
-    public virtual void  Fire(float damage)
+    public virtual void  Shoot(float damage)
     {            
 
         // Does the ray intersect any objects excluding the player layer
@@ -35,7 +74,7 @@ public class Shooter:MonoBehaviour,IDamager
             hithappend = true;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance,
                 Color.red);
-            if (hit.transform.TryGetComponent(out Health h))
+            if (hit.transform.TryGetComponent(out IHealth h))
             {
                 Damage(h,damage);
             }
@@ -43,13 +82,37 @@ public class Shooter:MonoBehaviour,IDamager
         else
         {
             hithappend = false;
+           
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
         }
  
         
        
     }
-    
+/// <summary>
+/// the dirtion is calulated in this value 
+/// </summary>
+/// <returns></returns>
+    public Vector3 calulateLockOnDirction()
+    {
+         return (lockOnPosition -this.transform.position).normalized ;
+
+    }
+
+    /*public void Update()
+    {
+        if (Lockon)
+        {
+            currentDirection = calulateLockOnDirction();
+
+        }
+        else
+        {
+            currentDirection = transform.TransformDirection(local_Dir);
+        }
+        
+    }*/
+
     /// <summary>
     ///  
     /// </summary>
@@ -87,8 +150,10 @@ public class Shooter:MonoBehaviour,IDamager
 
     }
 
-    public void Damage(Health  health,float damage)
+    public void Damage(IHealth  health,float damage)
     {
         health.Damage(damage);
     }
+
+
 }
