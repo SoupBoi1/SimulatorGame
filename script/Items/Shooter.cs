@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Shooter:MonoBehaviour,IDamager,IShootable
 {
-    int layerMask =0;
+    int layerMask =~0x84;
 
 
 
@@ -21,6 +21,12 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
     public Rigidbody gunsRigidbody;
 
     private bool hithappend = false;
+/// <summary>
+/// force applied when impaced
+/// </summary>
+    public float impactforce = 3f;
+
+    public ForceMode impactForceMode=0;
     /// <summary>
     /// true then raycast hits something
     /// </summary>
@@ -43,7 +49,8 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
  
     void Start()
     {
-        layerMask = ~(1<<8);
+        //bits/layer 2(ignore raycadt) and 7(playercontroler mask
+      //  layerMask = ~0b00100001;
 
     }
    
@@ -57,6 +64,10 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
             hithappend = true;
             Debug.DrawRay(transform.position, getDirction() * hit.distance,
                 Color.red);
+            if (hit.rigidbody)
+            {
+                AddForceAtDirection(hit.rigidbody,getDirction(),impactforce,impactForceMode);
+            }
             if (hit.transform.TryGetComponent(out IHealth h))
             {
                 Damage(h,damage);
@@ -144,6 +155,12 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
         {
             gunsRigidbody.AddForce(-getDirction()*RecoleForce,forceMode);
         }
+    }
+
+    public void AddForceAtDirection(Rigidbody RB,Vector3 dir,float Force,ForceMode forceMode)
+    {
+        RB.AddForce(dir.normalized*Force,forceMode);
+     
     }
 
 
