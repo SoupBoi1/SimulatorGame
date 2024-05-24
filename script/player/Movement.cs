@@ -1,11 +1,11 @@
-using System.Collections;
+using System;using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-    public class Movement:MonoBehaviour
+    public class Movement:MonoBehaviour 
     {
         private Transform _transform ;
         /*movementState:
@@ -17,7 +17,19 @@ using UnityEngine.InputSystem.Users;
          *
          *
          */
-        private int movementState = 0;
+        private MovmentState currentMovementState_value = MovmentState.Idel;
+
+        public MovmentState currentMovementState
+        {
+            get
+            {
+                return currentMovementState_value;
+            }
+            private set
+            {
+                currentMovementState_value = value;
+            }
+        }
         private bool jumpable = false;
         public bool isinAir = false;
         public float fallDelay = 5f;
@@ -40,41 +52,77 @@ using UnityEngine.InputSystem.Users;
         /// </summary>
         /// <param name="inputMoveDir"> normalized direction</param>
         /// <returns>vilocity</returns>
-        public Vector3 MoveInDir(Vector3 inputMoveDir)
+        public Vector3 MoveInDir(Vector3 inputMoveDir, Transform _transform)
         {
-            
-            _transform = transform; 
-            if (movementState == 1)
+
+            //_transform = transform;
+            if (inputMoveDir.magnitude>0)
             {
                 currentSpeed += AcclerationMovement * Time.deltaTime;
                 if (currentSpeed >= maxSpeed)
                 {
 
                     currentSpeed = maxSpeed;
-                    movementState = 2;
+                    currentMovementState = MovmentState.MaxSpeed;
                 }
-            } else if (movementState == 3)
+                else
+                {
+                    currentMovementState = MovmentState.Acclerating;
+                }
+            }
+            else
             {
-
 
                 if (!isinAir)
                 {
+                    
                     currentSpeed -= DeacclerationMovement * Time.deltaTime;
-
+                    currentMovementState = MovmentState.Acclerating;
                 }
-            
-                if (currentSpeed <=0f )
+                else
                 {
+                    currentMovementState = MovmentState.Idel;
+                }
+                if (currentSpeed <= 0f)
+                {
+                
+
+                
 
                     currentSpeed = 0f;
-                    movementState = 0;
+                    
                 }
             }
-            movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.x )) * currentSpeed +(externalVilocityOfPlayer) ;
-            return movement;
-           // _characterController.Move(movement*Time.deltaTime);
 
-        
+            movement = ((_transform.forward * inputMoveDir.z) + (_transform.right * inputMoveDir.x)) * currentSpeed +
+                       (externalVilocityOfPlayer);
+            return movement;
+            // _characterController.Move(movement*Time.deltaTime);
+
         }
-        
+
     }
+
+
+/// <summary>
+/// states of the movement 
+/// </summary>
+public enum MovmentState{
+    /// <summary>
+    /// when no input is apllied 
+    /// </summary>
+Idel,
+    /// <summary>
+    /// when Acclerating
+    /// </summary>
+Acclerating,
+    /// <summary>
+    /// when Deacclerating
+    /// </summary>
+Deacclerating,
+    /// <summary>
+    /// when it caps and reaches max speed
+    /// Deacclration the currentSpeed
+    /// </summary>
+MaxSpeed
+}

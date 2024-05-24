@@ -12,11 +12,18 @@ public class PlayerController : MonoBehaviour
     public InputActionAsset _inputActionAsset;
     private InputActionMap _inputActionMap_OnFoot;
     private InputActionMap _inputActionMap_Camera;
+    private InputActionMap _inputActionMap_Interactable;
+
 
     
     private InputAction input_move;
     private InputAction input_jump;
     private InputAction input_ragdoll;
+    private InputAction input_interact;
+    private InputAction input_fire;
+    private InputAction input_grable;
+
+
 
     
     private InputAction input_look;
@@ -105,10 +112,16 @@ public class PlayerController : MonoBehaviour
         _inputActionMap_OnFoot.Enable();
         _inputActionMap_Camera = _inputActionAsset.FindActionMap("Camera");
         _inputActionMap_Camera.Enable();
+        _inputActionMap_Interactable = _inputActionAsset.FindActionMap("Interact");
+        _inputActionMap_Interactable.Enable();
         
         input_move = _inputActionMap_OnFoot.FindAction("move");
         input_jump = _inputActionMap_OnFoot.FindAction("jump");
         input_ragdoll =_inputActionMap_OnFoot.FindAction("ragdoll");
+        input_interact = _inputActionMap_Interactable.FindAction("Interact");
+        input_fire = _inputActionMap_Interactable.FindAction("Fire");
+        input_grable = _inputActionMap_Interactable.FindAction("Grab");
+
         
         input_move.performed += context => OnInputMove(context);
         input_move.canceled += ctx => OnInputMove(ctx);
@@ -120,6 +133,11 @@ public class PlayerController : MonoBehaviour
         input_move.canceled += ctx => OnInputLook(ctx);
 
         input_ragdoll.performed += ct => ToggleRagdoll();
+
+        input_interact.performed += context => OnInteract(context);
+        
+        
+        
 
 
 
@@ -188,6 +206,26 @@ public class PlayerController : MonoBehaviour
         
 
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        Debug.Log("E");
+        if (_Raycaster.hitHappend )
+        {
+
+          
+            if(_Raycaster.hit.transform.TryGetComponent(out  IGrabable item))
+            {
+                //item.Grab(transform);
+                //_HoldRb.rigidBody = _Raycaster.hit.rigidbody;
+                
+                _HoldRb.setRB(_Raycaster.hit.rigidbody);
+                _HoldRb.Grab(transform.position);
+
+            }
+           
+        }
+    }
     
 
     // Update is called once per frame
@@ -233,26 +271,14 @@ public class PlayerController : MonoBehaviour
         }
 
        Movement(Time.deltaTime);
+       //Movement m = new Movement();
        
        //_characterController.Move(_movement.MoveInDir(inputMoveDir)*Time.deltaTime);
        _cameraScript.LOOK(inputCameraVector.x, inputCameraVector.y);
        animator.SetFloat("runspeedx",inputCameraVector.x);
        animator.SetFloat("runspeedy",inputCameraVector.y);
 
-       if (_Raycaster.hitHappend)
-       {
-
-          
-               if(_Raycaster.hit.transform.TryGetComponent(out  IGrabable item))
-               {
-                   //item.Grab(transform);
-                   //_HoldRb.rigidBody = _Raycaster.hit.rigidbody;
-                   _HoldRb.setRB(_Raycaster.hit.rigidbody);
-                   _HoldRb.Grab(transform.position);
-
-               }
-           
-       }
+       
         
         animator.SetInteger("MovementState", movementState);
 

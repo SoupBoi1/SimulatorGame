@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Move any Rigig body to the a desired position and rotation
+/// </summary>
 public class HoldRB: MonoBehaviour
     {
         private Rigidbody rb_value;

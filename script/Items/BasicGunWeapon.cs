@@ -56,7 +56,7 @@ public class BasicGunWeapon : MeleeWeapon, ITriggerable
     {
         //Shooter.lockOnPosition = new Vector3(0, 1, 0);
         //c
-            Debug.Log("testing");
+//            Debug.Log("testing");
             //shooter.Shoot(bulletDamage);
 
             
