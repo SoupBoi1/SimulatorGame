@@ -1,7 +1,7 @@
 # SimulatorGame
 a game I want to play
->This porject is just the indies Assets folder of a unity project and not the whole unity porject itself, so it contains all the and logic of the
-> > we made it this was because the Bust liberary and some other packages where over 100 MB big and we didn't know how to work it out git lsf if u know how to do it please let us know
+This porject is just the indies Assets folder of a unity project and not the whole unity porject itself, so it contains all the and logic of the
+ we made it this was because the Bust liberary and some other packages where over 100 MB big and we didn't know how to work it out git lsf if u know how to do it please let us know
 ## Unity Packages Used
 for this project you your these packages form **unity** to work
 
@@ -45,7 +45,7 @@ mv Assets Assets_old
 mv SimulatorGame Assets
 ```
 > [!WARNING]
-if you ran the commad above skip the section below it just explain wha t the command does above SO GO TO SETP 4 NOW
+if you ran the commad above skip the section below, it just explain what the command does above SO GO TO SETP 4 NOW
 > 
 > ***this is what the command above does*** 
 >- [x] ***//then clone this repository inside of the project folder***
