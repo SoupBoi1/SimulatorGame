@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7f89454-a2ec-41db-8a25-8201bcbecc90" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Scene/AI.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Scene/AI.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Defeated.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Defeated.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Fast Run.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Fast Run.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Hard Landing.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Hard Landing.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Jumping (1).fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Jumping (1).fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Jumping Up.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Jumping Up.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Jumping.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Jumping.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Run To Dive.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Run To Dive.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Run To Stop.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Run To Stop.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Running Jump.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Running Jump.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Running.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Running.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Slow Run.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/Slow Run.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/X Bot@Falling Idle 1.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/X Bot@Falling Idle 1.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/X Bot@Falling Idle.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/X Bot@Falling Idle.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/basic.controller" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/animation/basic.controller.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Idle.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scene/player.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scene/player.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/script/PlayerController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="e7f89454-a2ec-41db-8a25-8201bcbecc90" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,26 +41,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/sudiptahalder/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/sudiptahalder/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache&quot;,
-      &quot;/Users/sudiptahalder/Library/Application Support/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/sudipta/Library/Application Support/JetBrains/Rider2024.1/resharper-host/DecompilerCache",
+      "/Users/sudipta/Library/Application Support/JetBrains/Rider2024.1/resharper-host/SourcesCache",
+      "/Users/sudipta/Library/Application Support/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -108,6 +73,7 @@
       <workItem from="1716095052701" duration="813000" />
       <workItem from="1716129393564" duration="268000" />
       <workItem from="1716133160851" duration="51000" />
+      <workItem from="1716652956953" duration="61000" />
     </task>
     <task id="LOCAL-00001" summary="raycaster and basic ik hands">
       <option name="closed" value="true" />
