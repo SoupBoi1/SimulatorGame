@@ -2,12 +2,33 @@
 a game I want to play
 This porject is just the indies Assets folder of a unity project and not the whole unity porject itself, so it contains all the and logic of the
  we made it this was because the Bust liberary and some other packages where over 100 MB big and we didn't know how to work it out git lsf if u know how to do it please let us know
+
+> [!NOTE]
+> those working on this project please create a new **branch** and work on it also **please** comment every function and class you care like seen in [Microsoft's Annex D Documentation comments]( https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/documentation-comments) so it easier for us to work with.
+> for example:
+
+````
+
+/// <summary>
+/// Class <c>Point</c> models a point in a two-dimensional plane.
+/// </summary>
+public class Point
+{
+/// <summary>
+/// Method <c>Draw</c> renders the point.
+/// </summary>
+void Draw() {...}
+}. 
+````
+
 ## Unity Packages Used
 for this project you your these packages form **unity** to work
 
 - 3D Characters and Animation
 - 3D World Building
 - Input System
+
+
 
 ## Installation guide
 ### step 1: crate a unity project  
