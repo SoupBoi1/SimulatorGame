@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// kick Force Chage to reach wait time in a secounds
     /// </summary>
-    private float kickForceChagewait = 1f;
+    private float meleeForceChagewait = 1f;
     
     private bool jumpable = false;
     public bool isinAir = false;
@@ -275,14 +275,14 @@ public class PlayerController : MonoBehaviour
         if( context.performed)
         {
             kickState = 1;
-            StartCoroutine(OnKickCharge());
+            //StartCoroutine(OnKickCharge());
             Debug.Log("kickStateL: "+ kickState);
 
         }
         else if (context.canceled)
         {
             kickState = 2;
-            kickForce =
+          //  kickForce =
             Debug.Log("kickStateL: "+ kickState);
 
             if (_Raycaster.hit.rigidbody != null)
@@ -296,11 +296,11 @@ public class PlayerController : MonoBehaviour
             kickState = 0;
         }
     }
-
-    IEnumerable OnKickCharge()
-    {
-        kic
-    }
+//TODO KICK CHARGE
+   // IEnumerable OnKickCharge()
+    //{
+       // kic
+    //}
     
     /// <summary>
     /// make th player melees 
