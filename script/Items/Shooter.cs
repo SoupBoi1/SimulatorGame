@@ -86,6 +86,11 @@ public class Shooter:MonoBehaviour,IDamager,IShootable
        
     }
 
+    
+    /// <summary>
+    /// gets the dirction t eh raycast is useing 
+    /// </summary>
+    /// <returns></returns>
     public Vector3 getDirction()
     {
         return transform.TransformDirection(local_Dir);

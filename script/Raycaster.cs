@@ -79,5 +79,13 @@ public class Raycaster : MonoBehaviour
         return false;
 
     }
+    /// <summary>
+    /// gets the dirction t eh raycast is useing 
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 getDirction()
+    {
+        return transform.TransformDirection(Vector3.forward);
+    }
     
 }

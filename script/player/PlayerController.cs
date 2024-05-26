@@ -47,20 +47,23 @@ public class PlayerController : MonoBehaviour
     public GameObject ragdollOBJ;
     public Animator ragdollAnimator;
     public ragdolltest Ragdolltest;
-
+    /// <summary>
+    /// 0 = idel - no changes to currentSpeed
+    /// 1= acclration - acclration the currentSpeed
+    /// 2= maxspeed - no changes to currentSpeed --will go to state 3 if stop
+    /// 3= deacclration - Deacclration the currentSpeed
+    ///4 = turn acclration - if when going opposite of current dirton will apply the turn acclration on after <state 1>
+    /// </summary>
     
-
-    
-/*movementState:
- * 0 = idel - no changes to currentSpeed
- * 1= acclration - acclration the currentSpeed
- * 2= maxspeed - no changes to currentSpeed --will go to state 3 if stop
- * 3= deacclration - Deacclration the currentSpeed
- * 4 = turn acclration - if when going opposite of current dirton will apply the turn acclration on after <state 1>
- *
- *
- */
     private int movementState = 0;
+
+    /// <summary>
+    /// 0 idel
+    /// 1 = hold kick
+    /// 2 =kick
+    /// 
+    /// </summary>
+    private int kickState = 0;
     private bool jumpable = false;
     public bool isinAir = false;
     public float fallDelay = 5f;
@@ -232,15 +235,32 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// make th eplayer kick 
+    /// </summary>
+    /// <param name="context"> the input of new input system</param>
     public void OnKick(InputAction.CallbackContext context)
     {
         if( context.performed)
         {
-            
+            kickState = 1;
+            Debug.Log("kickStateL: "+ kickState);
+
         }
         else if (context.canceled)
         {
+            kickState = 2;
+            Debug.Log("kickStateL: "+ kickState);
+
+            if (_Raycaster.hit.rigidbody != null)
+            {
+                _Raycaster.hit.rigidbody.AddForce(transform.forward*500f,ForceMode.Impulse );
+                Debug.Log("KICKED !!!!!: "+ kickState+" "+_Raycaster.getDirction());
+
+            }
+
             
+            kickState = 0;
         }
     }
     
