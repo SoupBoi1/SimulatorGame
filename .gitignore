@@ -1,0 +1,10 @@
+*.DS_Store
+*.meta
+/animation/basiclocamotion.meta
+/animation/basic.controller.meta
+/animation/Defeated.fbx.meta
+/animation/melee.meta
+/animation/Remy@Right Strafe.fbx.meta
+/animation/Run To Dive.fbx.meta
+/animation/X Bot@Falling Idle.fbx.meta
+/animation/X Bot@Falling Idle 1.fbx.meta
