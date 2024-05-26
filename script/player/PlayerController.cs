@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private InputAction input_jump;
     private InputAction input_ragdoll;
     private InputAction input_kick;
+    private InputAction input_melee;
+
     private InputAction input_interact;
     private InputAction input_fire;
     private InputAction input_grable;
@@ -64,6 +66,29 @@ public class PlayerController : MonoBehaviour
     /// 
     /// </summary>
     private int kickState = 0;
+
+    private int kickForce = 500;
+    private int kickForceChageMutiplier = 2;
+    /// <summary>
+    /// kick Force Chage to reach wait time in a secounds
+    /// </summary>
+    private float kickForceChagewait = 1f;
+
+
+    /// <summary>
+    /// 0 - no melee
+    /// 1- nomal melee-it goes from <c>0</c> to <c>1</c>
+    /// 2- chargeing -the charge active after waiting 
+    /// 3- hardmelee -it goes from <c>0</c> then <c>2</c> then <c>3</c>
+    /// 
+    /// </summary>
+    private int meleeState = 0;
+    private int meleeForceChageMutiplier = 2;
+    /// <summary>
+    /// kick Force Chage to reach wait time in a secounds
+    /// </summary>
+    private float kickForceChagewait = 1f;
+    
     private bool jumpable = false;
     public bool isinAir = false;
     public float fallDelay = 5f;
@@ -127,6 +152,8 @@ public class PlayerController : MonoBehaviour
         input_interact = _inputActionMap_Interactable.FindAction("Interact");
         input_fire = _inputActionMap_Interactable.FindAction("Fire");
         input_grable = _inputActionMap_Interactable.FindAction("Grab");
+        input_melee = _inputActionMap_Interactable.FindAction("Melee");
+
 
         
         input_move.performed += context => OnInputMove(context);
@@ -144,6 +171,10 @@ public class PlayerController : MonoBehaviour
 
         input_kick.performed += context => OnKick(context);
         input_kick.canceled += context => OnKick(context);
+
+
+        input_melee.performed += context => OnMelee(context);
+        input_melee.canceled += context => OnMelee(context);
 
         
 
@@ -244,13 +275,50 @@ public class PlayerController : MonoBehaviour
         if( context.performed)
         {
             kickState = 1;
+            StartCoroutine(OnKickCharge());
             Debug.Log("kickStateL: "+ kickState);
 
         }
         else if (context.canceled)
         {
             kickState = 2;
+            kickForce =
             Debug.Log("kickStateL: "+ kickState);
+
+            if (_Raycaster.hit.rigidbody != null)
+            {
+                _Raycaster.hit.rigidbody.AddForce(transform.forward*500f,ForceMode.Impulse );
+                Debug.Log("KICKED !!!!!: "+ kickState+" "+_Raycaster.getDirction());
+
+            }
+
+            
+            kickState = 0;
+        }
+    }
+
+    IEnumerable OnKickCharge()
+    {
+        kic
+    }
+    
+    /// <summary>
+    /// make th player melees 
+    /// </summary>
+    /// <param name="context"> the input of new input system</param>
+    public void OnMelee(InputAction.CallbackContext context)
+    {
+        if( context.performed)
+        {
+            
+            meleeState = 1;
+            Debug.Log("meleeState: "+ kickState);
+
+        }
+        else if (context.canceled)
+        {
+            meleeState = 2;
+            Debug.Log("meleeState: "+ kickState);
 
             if (_Raycaster.hit.rigidbody != null)
             {
