@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private InputAction input_move;
     private InputAction input_jump;
     private InputAction input_ragdoll;
+    private InputAction input_kick;
     private InputAction input_interact;
     private InputAction input_fire;
     private InputAction input_grable;
@@ -118,6 +119,8 @@ public class PlayerController : MonoBehaviour
         input_move = _inputActionMap_OnFoot.FindAction("move");
         input_jump = _inputActionMap_OnFoot.FindAction("jump");
         input_ragdoll =_inputActionMap_OnFoot.FindAction("ragdoll");
+        input_kick =_inputActionMap_OnFoot.FindAction("kick");
+        
         input_interact = _inputActionMap_Interactable.FindAction("Interact");
         input_fire = _inputActionMap_Interactable.FindAction("Fire");
         input_grable = _inputActionMap_Interactable.FindAction("Grab");
@@ -135,8 +138,10 @@ public class PlayerController : MonoBehaviour
         input_ragdoll.performed += ct => ToggleRagdoll();
 
         input_interact.performed += context => OnInteract(context);
-        
-        
+
+        input_kick.performed += context => OnKick(context);
+        input_kick.canceled += context => OnKick(context);
+
         
 
 
@@ -224,6 +229,18 @@ public class PlayerController : MonoBehaviour
 
             }
            
+        }
+    }
+    
+    public void OnKick(InputAction.CallbackContext context)
+    {
+        if( context.performed)
+        {
+            
+        }
+        else if (context.canceled)
+        {
+            
         }
     }
     
@@ -404,5 +421,8 @@ public class PlayerController : MonoBehaviour
     {
         this.DoRagdoll();
     }
+
+
+    
 
 }

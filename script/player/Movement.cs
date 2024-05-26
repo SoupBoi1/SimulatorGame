@@ -5,8 +5,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-    public class Movement:MonoBehaviour 
+    public class Movement:MonoBehaviour
     {
+        public CharacterController characterController; // debug
         private Transform _transform ;
         /*movementState:
          * 0 = idel - no changes to currentSpeed
@@ -47,6 +48,8 @@ using UnityEngine.InputSystem.Users;
         public Vector3 movement;// current movment of th vilocity of the player
         public Vector3 externalVilocityOfPlayer; // vilocity of player cause by gravity and other forces
 
+        
+        public Vector3 debugInput;
         /// <summary>
         /// calulates the vilocity in dectition of this <c>Tranfrom</c> and accoudingly to inpout dirction
         /// </summary>
@@ -101,7 +104,48 @@ using UnityEngine.InputSystem.Users;
 
         }
 
+        public void Start()
+        {
+            gobalGravity = Physics.gravity;
+        }
+
+        public void Update()
+        {
+            
+            if (!characterController.isGrounded && characterController.enabled) // TODO fixjump
+            {
+                if (ungrounedTimer <= 0)
+                {
+                    isinAir = true;
+                   
+
+
+                }
+                ungrounedTimer -= Time.deltaTime;
+            
+            
+            
+            
+
+            }
+            else
+            {
+                if (isinAir)
+                {
+                  
+
+                }
+                ungrounedTimer = fallDelay;
+                isinAir = false;
+                externalVilocityOfPlayer.y = 0;
+            }
+            characterController.Move(this.MoveInDir(debugInput,transform)+gobalGravity);
+        
+        }
+
     }
+
+    
 
 
 /// <summary>
