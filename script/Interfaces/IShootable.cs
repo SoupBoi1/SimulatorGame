@@ -18,3 +18,11 @@ public interface ITriggerable
     /// </summary>
     public void Release();
 }
+
+public interface IExploable
+{
+    /// <summary>
+    /// eploxes
+    /// </summary>
+    public void Explode();
+}

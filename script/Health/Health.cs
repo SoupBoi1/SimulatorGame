@@ -96,6 +96,7 @@ public class Health : MonoBehaviour,IHealth
 
          /// <summary>
          ///       adds h number of health added to health and clamps if health is greater then max health of the onject <c>Health</c>
+         /// <br></br>if h is negative <c>Damage(h)</c> function is ran
          /// </summary>
          /// <param name="h"> the number of health add tto the obj</param>
          /// <example>
@@ -104,9 +105,17 @@ public class Health : MonoBehaviour,IHealth
          /// </example>
     public virtual void Heal(float h)
     {
-        health += h;
-        if (health > maxhealth)
-            health = maxhealth;
+        if (h < 0)
+        {
+            Damage(h);
+        }
+        else
+        {
+            health += h;
+            if (health > maxhealth)
+                health = maxhealth;
+        }
+        
         
         
     }
