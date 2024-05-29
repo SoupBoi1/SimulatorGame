@@ -12,7 +12,13 @@ using UnityEngine;
         public float radius;
         public Vector3 orginPosition;
 
-      
+
+        public HealthRadius(float healthAdded,float radius,Vector3 orginPosition)
+        {
+            this.healthAdded = healthAdded;
+            this.radius = radius;
+            this.orginPosition = orginPosition;
+        }
 
         public virtual void OnCollision(Collider i)
         {
