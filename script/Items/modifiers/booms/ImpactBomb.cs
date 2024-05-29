@@ -31,7 +31,11 @@ using UnityEngine;
                 Debug.DrawRay(contact.point, contact.normal, Color.white);
             }
             if (collision.relativeVelocity.magnitude >= vilocityOnExploedMagnitue)
-                base.Explode();
+                if (isActive)
+                {
+                    base.Explode();
+                }
+                
         }
         
 

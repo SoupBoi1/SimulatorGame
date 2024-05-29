@@ -12,7 +12,27 @@ using UnityEngine;
         /// <summary>
         /// is ready to exploed 
         /// </summary>
-        public bool isActive = false;
+        public bool isActive_value = false;
+
+        /// <summary>
+        ///  triggers when true
+        /// </summary>
+        public bool isActive
+        {
+            set
+            {
+                isActive_value = value;
+                if (!value)
+                {
+                    Trigger();
+                }
+                
+            }
+            get
+            {
+                return isActive_value;
+            }
+        }
         /// <summary>
         /// the explosion radius
         /// </summary>
@@ -26,7 +46,7 @@ using UnityEngine;
         /// </summary>
         public float UpwardExplosionForce = 10f;
 
-        public float Damgae = 5f;
+        public float HealthAdded = -50f;
 
         public virtual void Explode()
         {
@@ -38,9 +58,9 @@ using UnityEngine;
                 }
             }
 
-            HealthRadius hr = new HealthRadius(Damgae, explosionRadius,transform.position);
+            HealthRadius hr = new HealthRadius(HealthAdded, explosionRadius,transform.position);
 
-            
+            hr.Trigger();
             SelfDestrut();
         }
 
@@ -60,9 +80,12 @@ using UnityEngine;
 
         public void Update()
         {
-            if (isActive)//Debug
-            Trigger();
-        }
+            if (isActive) {
+
+             //   Trigger();
+                this.enabled = false;
+            }
+    }
 
 
         public virtual void Release()

@@ -21,6 +21,7 @@ using UnityEngine;
         {
             if (i.TryGetComponent(out Health h))
             {
+                
                 h.Heal(healthAdded);
             }
         } 

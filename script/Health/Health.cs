@@ -103,22 +103,22 @@ public class Health : MonoBehaviour,IHealth
          ///Heal(50.0f);
          /// //adds 50.0 healt to healt and if healt i 70 the healt will value of 100 if value max healt is 100
          /// </example>
-    public virtual void Heal(float h)
+    public virtual void Heal( float h)
     {
+
         if (h < 0)
         {
-            Damage(h);
+            Damage(-h);//lets say h is -50 with =out the - sign it will be Damgage (-50) which will add so Damgage (--50)=Damgage (50)
         }
-        else
-        {
             health += h;
             if (health > maxhealth)
                 health = maxhealth;
-        }
+        
         
         
         
     }
+         
     
          
          /// <summary>

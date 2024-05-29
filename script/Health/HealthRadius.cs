@@ -8,7 +8,26 @@ using UnityEngine;
 /// </summary>
     public class HealthRadius:ITriggerable
     {
-        public float healthAdded;
+        public float healthAdded_value = -50f;
+        /// <summary>
+        /// damages in connact of the explosion
+        /// or healing if true
+        /// </summary>
+        //public bool isDamaging=false;
+
+        public float healthAdded
+        {
+            set
+            {
+                healthAdded_value = value;
+                //isDamaging = (value < 0);
+                
+            }
+            get
+            {
+                return healthAdded_value;
+            }
+        }
         public float radius;
         public Vector3 orginPosition;
 
@@ -24,7 +43,12 @@ using UnityEngine;
         {
             if (i.TryGetComponent(out Health h))
             {
-                h.Heal(healthAdded);
+                Debug.Log("health effected to "+i.name+"with"+h.health);
+               
+                
+                    h.Heal(healthAdded);
+                
+                
             }
         }
 
@@ -33,9 +57,11 @@ using UnityEngine;
         {
             foreach (Collider i in Physics.OverlapSphere(orginPosition, radius))
             {
+               // Debug.Log("health effected to "+i.name);
                 OnCollision(i);
                 
-            }        }
+            }        
+        }
 
         public void Release()
         {
