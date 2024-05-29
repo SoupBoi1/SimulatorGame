@@ -26,6 +26,8 @@ using UnityEngine;
         /// </summary>
         public float UpwardExplosionForce = 10f;
 
+        public float Damgae = 5f;
+
         public virtual void Explode()
         {
             foreach (Collider i in Physics.OverlapSphere(transform.position, explosionRadius))
@@ -35,6 +37,8 @@ using UnityEngine;
                     rb.AddExplosionForce(explosionForce,i.gameObject.transform.position,explosionForce,UpwardExplosionForce,ForceMode.Impulse );
                 }
             }
+
+            HealthRadius hr = new HealthRadius(Damgae, explosionRadius,transform.position);
 
             
             SelfDestrut();
