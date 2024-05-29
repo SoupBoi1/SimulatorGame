@@ -67,8 +67,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private int kickState = 0;
 
+    private float kickChargeMutiplyerValue = 1;
+
     private int kickForce = 500;
-    private int kickForceChageMutiplier = 2;
+    private float kickForceChageMutiplier = 2;
     /// <summary>
     /// kick Force Chage to reach wait time in a secounds
     /// </summary>
@@ -274,8 +276,13 @@ public class PlayerController : MonoBehaviour
     {
         if( context.performed)
         {
+            if (kickState == 0)
+            {
+                kickChargeMutiplyerValue = 1;
+                StartCoroutine((IEnumerator)OnKickCharge(1f));
+
+            }
             kickState = 1;
-            //StartCoroutine(OnKickCharge());
             Debug.Log("kickStateL: "+ kickState);
 
         }
@@ -287,7 +294,7 @@ public class PlayerController : MonoBehaviour
 
             if (_Raycaster.hit.rigidbody != null)
             {
-                _Raycaster.hit.rigidbody.AddForce(transform.forward*500f,ForceMode.Impulse );
+                _Raycaster.hit.rigidbody.AddForce(_Raycaster.getDirction()*kickChargeMutiplyerValue*500f,ForceMode.Impulse );
                 Debug.Log("KICKED !!!!!: "+ kickState+" "+_Raycaster.getDirction());
 
             }
@@ -296,11 +303,17 @@ public class PlayerController : MonoBehaviour
             kickState = 0;
         }
     }
-//TODO KICK CHARGE
-   // IEnumerable OnKickCharge()
-    //{
-       // kic
-    //}
+
+    public IEnumerable OnKickCharge(float intreval)
+    {
+        
+        while (kickChargeMutiplyerValue <= kickForceChageMutiplier)
+        {
+            kickChargeMutiplyerValue += intreval;
+            //Debug.Log(" charge mutipler"+kickChargeMutiplyerValue);
+            yield return new WaitForSeconds(intreval);
+        }
+    }
     
     /// <summary>
     /// make th player melees 
