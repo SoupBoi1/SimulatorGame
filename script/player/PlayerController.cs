@@ -118,6 +118,9 @@ public class PlayerController : MonoBehaviour
     public Movement _movement;
 
     public HoldRB _HoldRb;
+    public Transform leftHandTransform;
+    public Transform rightHandTransform;
+
     
     // Start is called before the first frame update
     void Start()
@@ -170,6 +173,10 @@ public class PlayerController : MonoBehaviour
 
         input_interact.performed += context => OnInteract(context);
 
+        
+        input_fire.performed += context => OnFire(context);
+        input_fire.canceled += context => OnFire(context);
+        
         input_kick.performed += context => OnKick(context);
         input_kick.canceled += context => OnKick(context);
 
@@ -258,10 +265,11 @@ public class PlayerController : MonoBehaviour
             {
                 //item.Grab(transform);
                 //_HoldRb.rigidBody = _Raycaster.hit.rigidbody;
+                item.Grab(leftHandTransform);
+                //_HoldRb.setRB(_Raycaster.hit.rigidbody);
+                //_HoldRb.Grab(transform.position);
                 
-                _HoldRb.setRB(_Raycaster.hit.rigidbody);
-                _HoldRb.Grab(transform.position);
-
+                
             }
            
         }
@@ -342,6 +350,11 @@ public class PlayerController : MonoBehaviour
             
             kickState = 0;
         }
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        
     }
     
 
