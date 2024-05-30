@@ -11,6 +11,8 @@ public abstract class Item : MonoBehaviour,IInteractable
     /// cost of the Item in Money
     /// </summary>
     public Money cost;
+
+    public string type;
     
     /// <summary>
     /// DONOT USE WHEN PROGRAMING ONLY FOR INPECTOR ONLY
@@ -38,5 +40,7 @@ public abstract class Item : MonoBehaviour,IInteractable
 
 
     public abstract void Interact();
+
+    
 
 }
