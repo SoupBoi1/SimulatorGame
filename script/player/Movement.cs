@@ -57,50 +57,54 @@ using UnityEngine.InputSystem.Users;
         /// <returns>vilocity</returns>
         public Vector3 MoveInDir(Vector3 inputMoveDir, Transform _transform)
         {
-
-            //_transform = transform;
-            if (inputMoveDir.magnitude>0)
+            
+            if (inputMoveDir.magnitude > 0)
             {
-                currentSpeed += AcclerationMovement * Time.deltaTime;
-                if (currentSpeed >= maxSpeed)
+                currentMovementState = MovmentState.Acclerating;
+            }else
+            {
+                if (DeacclerationMovement == 0f)
+                {
+                    currentMovementState = MovmentState.Idel;
+                }
+                else
+                {
+                    currentMovementState = MovmentState.Deacclerating;
+                    //                Debug.Log("movemnt state:"+ movementState);
+                }
+
+            }
+            if (currentMovementState == MovmentState.Acclerating ||currentMovementState == MovmentState.MaxSpeed ) // braking the movement here as long THE playe is in air speed will keep on increasing 
+            {
+                if (currentSpeed >= maxSpeed && !isinAir)// braking the movement here as long THE playe is in air speed will keep on increasing 
                 {
 
                     currentSpeed = maxSpeed;
                     currentMovementState = MovmentState.MaxSpeed;
                 }
-                else
-                {
-                    currentMovementState = MovmentState.Acclerating;
-                }
-            }
-            else
+                currentSpeed += AcclerationMovement * Time.deltaTime;
+            
+            } else if (currentMovementState == MovmentState.Deacclerating)
             {
+            
+            
 
-                if (!isinAir)
+                if (!isinAir )
                 {
-                    
                     currentSpeed -= DeacclerationMovement * Time.deltaTime;
-                    currentMovementState = MovmentState.Acclerating;
-                }
-                else
-                {
-                    currentMovementState = MovmentState.Idel;
-                }
-                if (currentSpeed <= 0f)
-                {
-                
 
-                
+                }
+            
+                if (currentSpeed <=0f )
+                {
 
                     currentSpeed = 0f;
-                    
+                    currentMovementState = MovmentState.Idel;
                 }
             }
-
-            movement = ((_transform.forward * inputMoveDir.z) + (_transform.right * inputMoveDir.x)) * currentSpeed +
-                       (externalVilocityOfPlayer);
+            movement = ((_transform.forward *inputMoveDir.z)  + (_transform.right *inputMoveDir.x )) * currentSpeed +(externalVilocityOfPlayer) ;
             return movement;
-            // _characterController.Move(movement*Time.deltaTime);
+            
 
         }
 
@@ -139,7 +143,7 @@ using UnityEngine.InputSystem.Users;
                 isinAir = false;
                 externalVilocityOfPlayer.y = 0;
             }
-            characterController.Move(this.MoveInDir(debugInput,transform)+gobalGravity);
+            characterController.Move((this.MoveInDir(debugInput,transform)+gobalGravity)*Time.deltaTime);
         
         }
 

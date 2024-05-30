@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
     /// 3= deacclration - Deacclration the currentSpeed
     ///4 = turn acclration - if when going opposite of current dirton will apply the turn acclration on after <state 1>
     /// </summary>
-    
     private int movementState = 0;
 
     /// <summary>
