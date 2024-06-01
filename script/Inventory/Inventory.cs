@@ -16,7 +16,7 @@ using UnityEngine;
         DataTable dt = new DataTable();
         
 
-        private Dictionary<Item, int> d = new Dictionary<Item, int>();
+        private Dictionary<Item, int> ItemDictionary  = new Dictionary<Item, int>();
         public short maxCapacityOfUniqeItems_v = 99;
         public Transform holdSlot1;
         public Transform holdSlot2;
@@ -55,16 +55,48 @@ using UnityEngine;
             }
         }
 
-
+/// <summary>
+/// add the item to _inventory arraylist and hads the item and item to a hashtable
+/// </summary>
+/// <param name="item"></param>
         public void Add(Item item)
         {
             //item.enabled = false;
             if (typeof(IGrabable).IsAssignableFrom(typeof(Item)))
             {
                 _inventory.Add(item);
-                d.Add(item,_inventory.Count-1);
+                ItemDictionary.Add(item,_inventory.Count-1);
 
             }
+        }
+        /// <summary>
+        /// removes yhe item from excitace 
+        /// </summary>
+        /// <param name="index"></param>
+        private void Remove(int item)
+        {
+            
+        }
+        /// <summary>
+        /// removes yhe item from excitace 
+        /// </summary>
+        /// <param name="index"></param>
+        private void Remove(Item item)
+        {
+            if (ItemDictionary.TryGetValue(item, out int theIndex))
+            {
+                Remove(theIndex);
+            }
+        }
+
+        /// <summary>
+        /// get the 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Item at index else null if not there </returns>
+        public Item Get(int index)
+        {
+            
         }
         
         public void Drop(int index)
@@ -74,10 +106,32 @@ using UnityEngine;
             // todo do something to item
             
         }
-        
-        public void PutInInventory(Item item)
+        public void MoveTo(Item item,int index)
+        {
+
+            MoveTo(item, this, index);
+
+        }
+        /// <summary>
+        /// moves item to a inventory at the index
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="inventory"></param>
+        /// <param name="index"></param>
+        public void MoveTo(Item item,Inventory inventory, int index)
         {
             
+            
+        
+        }
+        /// <summary>
+        /// moves item to a inventory
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="inventory"></param>
+        public void MoveTo(Item item,Inventory inventory)
+        {
+            inventory.Add(item);
             
         
         }
