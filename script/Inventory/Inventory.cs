@@ -59,12 +59,12 @@ using UnityEngine;
         public void Add(Item item)
         {
             //item.enabled = false;
-            //if (typeof(ITriggerable).IsAssignableFrom(typeof(Item)))
-           // {
+            if (typeof(IGrabable).IsAssignableFrom(typeof(Item)))
+            {
                 _inventory.Add(item);
                 d.Add(item,_inventory.Count-1);
 
-           // }
+            }
         }
         
         public void Drop(int index)
