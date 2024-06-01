@@ -37,7 +37,14 @@ using UnityEngine;
         /// <summary>
         /// which itme in the slop is currlly eppeed 
         /// </summary>
-        private int cursor = 0;
+        public int cursor = 0;
+        
+        /// <summary>
+        /// the point where the item can grip<br></br> mihght have morethrn one grippiint
+        /// </summary>
+        public Transform Gripoint1;
+        public Transform Gripoint2;
+        
         
         
         /// <summary>
