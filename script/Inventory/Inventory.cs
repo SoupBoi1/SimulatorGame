@@ -9,6 +9,7 @@ using UnityEngine;
 
 /// <summary>
 /// it's stores item anfd mangeages curld and mangaes eppided ment logiic
+/// <b>WE ARE NOT USING THIS FOR NOW!!!</b>
 /// </summary>
     public class Inventory:MonoBehaviour
     {
@@ -73,9 +74,9 @@ using UnityEngine;
         /// removes yhe item from excitace 
         /// </summary>
         /// <param name="index"></param>
-        private void Remove(int item)
+        private void Remove(int index)
         {
-            
+            Remove(this.Get(index));
         }
         /// <summary>
         /// removes yhe item from excitace 
@@ -83,21 +84,37 @@ using UnityEngine;
         /// <param name="index"></param>
         private void Remove(Item item)
         {
-            if (ItemDictionary.TryGetValue(item, out int theIndex))
-            {
-                Remove(theIndex);
-            }
+            //if (ItemDictionary.TryGetValue(item, out int theIndex))
+            //{
+           //     Remove(theIndex);
+           // }
+           _inventory.Remove(item);
+
         }
 
         /// <summary>
-        /// get the 
+        /// get the item at index
         /// </summary>
         /// <param name="index"></param>
         /// <returns>Item at index else null if not there </returns>
         public Item Get(int index)
         {
-            
+            return (Item)_inventory[index];
+          
         }
+        
+        /// <summary>
+        /// get the 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Item at index else null if not there </returns>
+        private int GetPos(Item item)
+        {
+            return _inventory.IndexOf(item); 
+
+        } 
+     
+     
         
         public void Drop(int index)
         {

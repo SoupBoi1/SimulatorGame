@@ -5,16 +5,16 @@ using System.Timers;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-
+//TODO work on this at the movmemtn too lazy to work on this
 /// <summary>
 /// slots to hold the the itmes for a inventory whichn can eqquped when commaned  
 /// </summary>
-    public class Hotbar
+    public class Hotbar:MonoBehaviour
     {
         /// <summary>
         /// this hotbar can have only one inventory 
         /// </summary>
-        public Inventory _inventory;
+        //public Inventory _inventory;
 
         public int maxslotscount_value = 10;
         public Item[] items; 
@@ -80,6 +80,11 @@ using UnityEngine;
             }
 
             items = temItemList;
+        }
+
+        public void EquipItemOnCursor()
+        {
+            
         }
         
         
