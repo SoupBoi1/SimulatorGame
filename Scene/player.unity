@@ -2140,6 +2140,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 353966293}
+    - targetCorrespondingSourceObject: {fileID: -4728426434207774260, guid: 951a62707570046ad94a9779fb1a26c0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 882007935}
     - targetCorrespondingSourceObject: {fileID: -1781356600409242780, guid: 951a62707570046ad94a9779fb1a26c0,
         type: 3}
       insertIndex: -1
@@ -4340,6 +4344,39 @@ MonoBehaviour:
   current_health: 100
   isdeath: 0
   _PlayerController: {fileID: 0}
+--- !u!1 &882007933 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4728426434207774260, guid: 951a62707570046ad94a9779fb1a26c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 528869568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &882007935
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882007933}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &897225972 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6515712193588681746, guid: 951a62707570046ad94a9779fb1a26c0,
@@ -9762,7 +9799,7 @@ Transform:
   m_GameObject: {fileID: 1629460288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.535, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.76, z: 0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22139,6 +22176,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 835670625}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1881207556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1881207557}
+  m_Layer: 0
+  m_Name: grabpoint1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1881207557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881207556}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.76, z: -0.53}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1935559828}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1882471587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 234480625599603528, guid: 951a62707570046ad94a9779fb1a26c0,
@@ -22374,7 +22442,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -22463,6 +22531,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1629460289}
+  - {fileID: 1881207557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1935559829
@@ -22472,13 +22541,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935559822}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c5528fb063c45c2866ff15d5c3cee94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractable_vaule: 1
-  GrabPosition: {fileID: 0}
+  GrabPosition: {fileID: 1629460289}
+  currentGrabberTransform: {fileID: 0}
+  _rigidbody: {fileID: 0}
   meleeDamage: 99
   shooter: {fileID: 0}
   bulletDamage: 1
@@ -22510,7 +22581,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935559822}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c00132b52f2342bc9c9fce722fea5718, type: 3}
   m_Name: 
@@ -22580,6 +22651,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteractable_vaule: 1
   GrabPosition: {fileID: 0}
+  currentGrabberTransform: {fileID: 0}
+  _rigidbody: {fileID: 0}
   meleeDamage: 99
   shooter: {fileID: 0}
   bulletDamage: 1

@@ -121,6 +121,8 @@ public class PlayerController : MonoBehaviour
     public Transform leftHandTransform;
     public Transform rightHandTransform;
 
+    //todo have hotbar instad 
+    public ITriggerable itemSlot1; //tem in dev
     
     // Start is called before the first frame update
     void Start()
@@ -261,15 +263,19 @@ public class PlayerController : MonoBehaviour
         {
 
           
-            if(_Raycaster.hit.transform.TryGetComponent(out  IGrabable item))
+            if(_Raycaster.hit.transform.TryGetComponent(out  GrabaleItem item))
             {
                 //item.Grab(transform);
                 //_HoldRb.rigidBody = _Raycaster.hit.rigidbody;
+                
                 item.Grab(leftHandTransform);
+           
+                
+                itemSlot1 = (ITriggerable)item;
                 //_HoldRb.setRB(_Raycaster.hit.rigidbody);
                 //_HoldRb.Grab(transform.position);
-                
-                
+
+
             }
            
         }
