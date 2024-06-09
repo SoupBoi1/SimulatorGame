@@ -5,7 +5,9 @@ using UnityEngine;
 public class Raycaster : MonoBehaviour
 {
     
-    int layerMask =0;
+    //int layerMask =0;
+    public LayerMask layerMask;
+
     public bool hithappend = false;
 
     public bool hitHappend

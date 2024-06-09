@@ -66,16 +66,26 @@ public static class ConfigurableJointExtensions
 		joint.xMotion = ConfigurableJointMotion.Locked;
 		joint.yMotion = ConfigurableJointMotion.Locked;
 		joint.zMotion = ConfigurableJointMotion.Locked;
-		joint.angularXMotion = ConfigurableJointMotion.Limited;
-		joint.angularYMotion = ConfigurableJointMotion.Limited;
-		joint.angularZMotion = ConfigurableJointMotion.Limited;
+		joint.angularXMotion = ConfigurableJointMotion.Free;
+		joint.angularYMotion = ConfigurableJointMotion.Free;
+		joint.angularZMotion = ConfigurableJointMotion.Free;
 		joint.breakForce = Mathf.Infinity;
 		joint.breakTorque = Mathf.Infinity;
 		
+		joint.rotationDriveMode = RotationDriveMode.XYAndZ;
+		var drive = joint.angularXDrive;
+		drive.positionSpring = 9999;
+		drive.positionDamper = 10;
+		//drive.useAcceleration = true;
+		joint.angularXDrive = drive;
+		joint.angularYZDrive = drive;
+		
+		/*
 		joint.rotationDriveMode = RotationDriveMode.Slerp;
 		var slerpDrive = joint.slerpDrive;
 		slerpDrive.mode = JointDriveMode.Position;
 		slerpDrive.maximumForce = Mathf.Infinity;
 		joint.slerpDrive = slerpDrive;
+		*/
 	}
 }
