@@ -49,6 +49,9 @@ using UnityEngine.Animations.Rigging;
                     configurableJoint.axis = c.axis;
                     configurableJoint.connectedAnchor = c.connectedAnchor;
                     configurableJoint.configuredInWorldSpace = false;
+                    
+                    
+                
                    /*
                     configurableJoint.xMotion = ConfigurableJointMotion.Locked;
                     configurableJoint.yMotion = ConfigurableJointMotion.Locked;
@@ -96,8 +99,8 @@ using UnityEngine.Animations.Rigging;
 
 
 
-
-
+                
+                RB.excludeLayers = 0b10001000;
 
         }
 
@@ -105,6 +108,7 @@ using UnityEngine.Animations.Rigging;
         {
             if (justcopy==true)
             {
+                RB.isKinematic = true;
                 transform.position = new Vector3(copy.position.x, transform.position.y, copy.position.z);
                 transform.rotation = copy.rotation;
             }
@@ -112,9 +116,11 @@ using UnityEngine.Animations.Rigging;
             {
                 ConfigurableJointExtensions.SetTargetRotationLocal(configurableJoint,copy.localRotation,Join);
                 //ConfigurableJointExtensions.SetTargetRotationLocal(configurableJoint,copy.localRotation,transform.localRotation);
-
+                //configurableJoint.targetRotation = copy.localRotation;
+               // configurableJoint.targetAngularVelocity = new Vector3(1,1,1)*7f;
+               // configurableJoint.
 /*
-                configurableJoint.targetPosition = copy.position; 
+                configurableJoint.targetPosition = copy.position;
                 configurableJoint.targetVelocity = new Vector3(5, 5, 5);
                 configurableJoint.targetRotation = copy.rotation;
                 configurableJoint.targetAngularVelocity = new Vector3(5, 5, 5);

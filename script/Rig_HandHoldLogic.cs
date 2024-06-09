@@ -14,11 +14,12 @@ public class Rig_HandHoldLogic : MonoBehaviour
     public Transform ikLeftHandHandle;
 
     public float heldoutDistace = 1;
+    public bool justPutUourHandsOut =false;
 
     //TODO find a better way to learp vlues form 0 to 1 in real time hint: may be muti threading 
     private float _initWeightR = 0;
     private float initWeightL = 0;
-
+    
     
     
     // Start is called before the first frame update
@@ -32,7 +33,7 @@ public class Rig_HandHoldLogic : MonoBehaviour
     void Update()
     {
         //if a hit collision then rig is active else no 
-        if (raycaster.setPointHit(ikRightHandHandle,heldoutDistace))
+        if (raycaster.setPointHit(ikRightHandHandle,heldoutDistace)||justPutUourHandsOut)
         {
             RightHandRig.weight = 1;
         }
