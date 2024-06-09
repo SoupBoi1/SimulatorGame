@@ -60,7 +60,7 @@ and if you don't know where you folder location is you can just use unity hub an
 
 then you can run this command below remmber to replce `{{your unity project folder path here}}` with your unity project folder path
 ```
-cd /Users/sudipta/{{your unity project folder path here}} 
+cd {{your unity project folder path here}} 
 git clone https://github.com/SoupBoi1/SimulatorGame.git
 mv Assets Assets_old
 mv SimulatorGame Assets
